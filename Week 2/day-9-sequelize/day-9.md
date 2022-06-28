@@ -44,3 +44,5 @@ We can add functions to the constructor function OR to its prototype (respective
 ## Resources:
 
 #### [🔗 **Eager Loading Documentation**](https://sequelize.org/docs/v6/advanced-association-concepts/eager-loading/)
+
+#### [🔗 **Magic Methods Chart**](https://medium.com/@julianne.marik/sequelize-associations-magic-methods-c72008db91c9)
