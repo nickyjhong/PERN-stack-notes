@@ -34,6 +34,6 @@ Add to package.json > scripts:
 
 #### [🔗 **Sequelize REPL**](https://replit.com/@nickyjhong/Sequelize-Review#routes/tasks.js)
 
-#### [🔗 **Sequelize Cheatsheet**](hhttps://dev.to/projectescape/the-comprehensive-sequelize-cheatsheet-3m1m)
+#### [🔗 **Sequelize Cheatsheet**](https://dev.to/projectescape/the-comprehensive-sequelize-cheatsheet-3m1m)
 
 #### [🔗 **Magic Methods**](https://gist.github.com/jsmney/012c5e123d343171e2bc12ced6553bbe#file-magicmethods-csv)
