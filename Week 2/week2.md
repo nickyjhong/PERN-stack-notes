@@ -1,4 +1,5 @@
-# Week 3: Express, Async/Await, Databases (PostgreSQL), ORMs (Sequelize)
+# Week 2: Express, Async/Await, Databases (PostgreSQL), ORMs (Sequelize)
+[⬅ Go Back](../README.md)
 
 ## Day 1: Holiday
 

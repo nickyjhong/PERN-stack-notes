@@ -1,4 +1,5 @@
 # Sequelize
+[⬅ Go Back](../week2.md)
 
 ## Notes
 ### **Eager Loading**

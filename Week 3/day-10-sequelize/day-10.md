@@ -1,4 +1,5 @@
 # Sequelize
+[⬅ Go Back](../week3.md)
 
 ## Important Steps! **Do it just to be sure**:
 1. npm install express
