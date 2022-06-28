@@ -37,3 +37,5 @@ Add to package.json > scripts:
 #### [🔗 **Sequelize Cheatsheet**](https://dev.to/projectescape/the-comprehensive-sequelize-cheatsheet-3m1m)
 
 #### [🔗 **Magic Methods**](https://gist.github.com/jsmney/012c5e123d343171e2bc12ced6553bbe#file-magicmethods-csv)
+
+#### [🔗 **Operators**](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators)
