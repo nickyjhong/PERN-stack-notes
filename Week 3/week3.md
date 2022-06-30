@@ -9,3 +9,5 @@
 
 ## Day 3: Single-Page applications
 #### [🔗 Single-Page Apps Notes](./day-12-single-page-applications/single-page-apps.md)
+#### [🔗 ES Modules and Webpack Notes](./day-12-single-page-applications/es-modules.md)
+#### [🔗 AJAX Notes](./day-12-single-page-applications/ajax.md)

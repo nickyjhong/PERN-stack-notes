@@ -2,9 +2,12 @@
 [⬅ Go Back](../week3.md)
 
 ## Notes
+- Front end 
+- Essentially works like a desktop application
+
 [🔗 ES Modules and Webpack](./es-modules.md)
 
-[🔗 AJAX](./ajax.md)
+[🔗 Single-Page Applications and AJAX](./ajax.md)
 
 
 ## Resources:

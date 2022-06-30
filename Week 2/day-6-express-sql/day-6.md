@@ -16,13 +16,12 @@ Add to package.json > scripts:
 
 ## Notes:
 ### **API Requests**
-- **GET**
-- **POST**
-- **PUT**
-- **PATCH**
-- **DELETE**
+- **GET** - Retrieve
+- **POST** - Create
+- **PUT** - Update
+- **PATCH** 
+- **DELETE** - Delete
 - **USE** - handles ALL verbs
-
 
 ### **Express**
 ``` Javascript
