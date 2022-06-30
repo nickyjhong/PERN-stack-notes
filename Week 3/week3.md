@@ -13,4 +13,5 @@
 #### [🔗 AJAX Notes](./day-12-single-page-applications/ajax.md)
 
 ## Day 4: React
-#### [🔗 React Notes](./day-13-react/react.md)
+#### [🔗 React Six Key Concepts Notes](./day-13-react/react-six-key-concepts.md)
+#### [🔗 React Lecture Notes](./day-13-react/react-lecture.md)

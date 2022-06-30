@@ -1,4 +1,4 @@
-# React
+# React Six Key Concepts
 [⬅ Go Back](../week3.md)
 
 ## Six Key Concepts:
@@ -78,7 +78,7 @@
         - Components you can wrap around another component to pass it special props
         - Typically created using a higher-order component factory function
 
-        
+
 ## Resources:
 
 #### [🔗 **WebDevSimplified React Playlist**](https://www.youtube.com/watch?v=1wZoGFF_oi4&list=PLZlA0Gpn_vH_NT5zPVp18nGe_W9LqBDQK)
