@@ -16,3 +16,4 @@
 #### [🔗 React Six Key Concepts Notes](./day-13-react/react-six-key-concepts.md)
 #### [🔗 State and Components](./day-13-react/react-state-components.md)
 #### [🔗 Props and State](./day-13-react/react-props-state.md)
+#### [🔗 Lifecycle](./day-13-react/react-lifecycle.md)

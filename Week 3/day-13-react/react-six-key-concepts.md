@@ -41,7 +41,7 @@
             return <ChildComponent message='Hello World'/>;
         }
     }
-    class ParentC{omponent extends React.Component {
+    class ParentComponent extends React.Component {
         render() {
             return <p>And then I said, "{this.props.message}"</p>;
         }
