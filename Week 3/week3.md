@@ -14,4 +14,5 @@
 
 ## Day 4: React
 #### [🔗 React Six Key Concepts Notes](./day-13-react/react-six-key-concepts.md)
-#### [🔗 React Lecture Notes](./day-13-react/react-lecture.md)
+#### [🔗 State and Components](./day-13-react/react-state-components.md)
+#### [🔗 Props and State](./day-13-react/react-props-state.md)

@@ -1,4 +1,4 @@
-# React.js
+# State and Components
 [⬅ Go Back](../week3.md)
 
 - A Javascript library for building user interfaces
