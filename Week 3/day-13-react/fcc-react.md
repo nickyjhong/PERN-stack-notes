@@ -5,6 +5,49 @@
 - JSX is an extension of JavaScript that lets you write HTML within JavaScript
     - Anything you want to write in Javascript needs to be within `{ }`
 - `props` (properties)
+    - Can also set default props
+        ```Javascript
+        MyComponent.defaultProps = { location: 'NYC' }
+        ```
+    - PropTypes
+        ```Javascript
+        const Items = (props) => {
+            return <h1>Current Quantity of Items in Cart: { props.quantity }</h1>
+            };
+
+        Items.propTypes = { quantity: PropTypes.number.isRequired }
+
+        Items.defaultProps = { quantity: 0 };
+        ```
+    - `this`
+        ```Javascript
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return (
+                    <div>
+                        <Welcome name='bean'/>
+                    </div>
+                );
+            }
+        };
+
+        class Welcome extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            render() {
+                return (
+                    <div>
+                    <p>Hello, <strong>{this.props.name}</strong>!</p>
+                    </div>
+                );
+            }
+        };
+        ```
+
 
 ## Notes
 
