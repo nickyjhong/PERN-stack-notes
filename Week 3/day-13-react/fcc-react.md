@@ -4,76 +4,78 @@
 - React is used to render the User Interface (UI) of web applications
 - JSX is an extension of JavaScript that lets you write HTML within JavaScript
     - Anything you want to write in Javascript needs to be within `{ }`
-- `props` (properties)
-    - Can also set default props
-        ```Javascript
-        MyComponent.defaultProps = { location: 'NYC' }
-        ```
-    - PropTypes
-        ```Javascript
-        const Items = (props) => {
-            return <h1>Current Quantity of Items in Cart: { props.quantity }</h1>
-            };
-
-        Items.propTypes = { quantity: PropTypes.number.isRequired }
-
-        Items.defaultProps = { quantity: 0 };
-        ```
-    - `this`
-        ```Javascript
-        class App extends React.Component {
-            constructor(props) {
-                super(props);
-            }
-            render() {
-                return (
-                    <div>
-                        <Welcome name='bean'/>
-                    </div>
-                );
-            }
-        };
-
-        class Welcome extends React.Component {
-            constructor(props) {
-                super(props);
-            }
-            render() {
-                return (
-                    <div>
-                    <p>Hello, <strong>{this.props.name}</strong>!</p>
-                    </div>
-                );
-            }
-        };
-        ```
-
 
 ## Notes
+
+### Props (properties)
+- defaultProps
+    ```Javascript
+    MyComponent.defaultProps = { location: 'NYC' }
+    ```
+- PropTypes - can set requirements for props
+    ```Javascript
+    const Items = (props) => {
+        return <h1>Current Quantity of Items in Cart: { props.quantity }</h1>
+    };
+
+    Items.propTypes = { quantity: PropTypes.number.isRequired }
+
+    Items.defaultProps = { quantity: 0 };
+    ```
+- `this`
+    ```Javascript
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return (
+                 <div>
+                    <Welcome name='bean'/>
+                </div>
+            );
+        }
+    };
+
+    class Welcome extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return (
+                <div>
+                <p>Hello, <strong>{this.props.name}</strong>!</p>
+                </div>
+            );
+        }
+    };
+    ```
+
+
 
 ### Complex JSX Element
 - Nested JSX must return a single element
     - Parent element wraps all other levels of nested elements
-```Javascript
-<div>
-  <p>Paragraph One</p>
-  <p>Paragraph Two</p>
-  <p>Paragraph Three</p>
-</div>
-```
+    ```Javascript
+    <div>
+    <p>Paragraph One</p>
+    <p>Paragraph Two</p>
+    <p>Paragraph Three</p>
+    </div>
+    ```
 
 ### Render HTML Elements to the DOM
 - `ReactDOM.render(componentToRender, targetNode)`
-```Javascript
-const JSX = (
-  <div>
-    <h1>Hello World</h1>
-    <p>Lets render this to the DOM</p>
-  </div>
-);
+    ```Javascript
+    const JSX = (
+    <div>
+        <h1>Hello World</h1>
+        <p>Lets render this to the DOM</p>
+    </div>
+    );
 
-ReactDOM.render(JSX, document.getElementById('challenge-node'))
-```
+    ReactDOM.render(JSX, document.getElementById('challenge-node'))
+    ```
 
 ### Defining a Class and Naming
 - We use camelCase!
@@ -113,6 +115,7 @@ const MyComponent = function() {
         ```Javascript
         const Welcome = (props) => <h1>Hello, {props.user}!</h1>
         ```
+
 ```Javascript
 const CurrentDate = (props) => {
   return (
@@ -139,34 +142,25 @@ class Calendar extends React.Component {
 };
 ```
 
-
 ### Class Component
 - Extend `React.Component` so the class has access to React features, such as local state and lifecycle hooks
 ```Javascript
 class Kitten extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <h1>Hi</h1>
-    );
-  }
+    render() {
+        return (
+            <h1>Hi</h1>
+        );
+    }
 }
 ```
 
 #### Composition
 - Custom HTML tag can reference another component (a component name wrapped in `< />`), it renders the markup for that component in the location of the tag
-```Javascript
-return (
- <App>
-  <Navbar />
-  <Dashboard />
-  <Footer />
- </App>
-)
-```
+
 ```Javascript
 const ChildComponent = () => {
   return (

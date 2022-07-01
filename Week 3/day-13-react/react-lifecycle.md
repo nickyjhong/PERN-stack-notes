@@ -1,5 +1,7 @@
 # React Lifecycle
-[⬅ Go Back](../week3.md)
+[⬅ Go Back]
+
+![react](/images/react-mounting.png)
 
 ## Notes
 - Hooks
