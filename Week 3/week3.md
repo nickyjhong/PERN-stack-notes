@@ -17,3 +17,7 @@
 #### [🔗 State and Components](./day-13-react/react-state-components.md)
 #### [🔗 Props and State](./day-13-react/react-props-state.md)
 #### [🔗 Lifecycle](./day-13-react/react-lifecycle.md)
+#### [🔗 React freeCodeCamp](./day-13-react/fcc-react.md)
+
+## Day 5: Juke
+#### [🔗 Juke](./day-14-juke/juke.md)
