@@ -44,5 +44,53 @@
   ```
 - **`store.dispatch()`** sends an action back to the store
   ```Javascript
-  
+  const store = Redux.createStore(
+    (state = {login: false}) => state
+  );
+
+  const loginAction = () => {
+    return {
+      type: 'LOGIN'
+    }
+  };
+
+  store.dispatch(loginAction)
+  ```
+### `Reducer`
+- After an action is created and dispatched, the Redux store needs to know how to respond!
+- Reducers are responsible for state modifications that take place in response to actions
+- A `reducer` take `state` and `action` as arguments, and **always** returns a new `state`
+  - **This is the only role of a reducer!**
+  - Reducers should never call an API endpoint or have any other side effects
+- `state` is read-only, which means the `reducer` function must **always** return a new copy of `state` and never modify it directly
+- Use a `switch` statement in the `reducer` to respond to different action events!
+  ```Javascript
+  const defaultState = {
+    authenticated: false
+  };
+
+  const authReducer = (state = defaultState, action) => {
+    switch (action.type) {
+      case 'LOGIN':
+        return {authenticated: true}
+      case 'LOGOUT':
+        return {authenticated: false}
+      default:
+        return defaultState
+    }
+  };
+
+  const store = Redux.createStore(authReducer);
+
+  const loginUser = () => {
+    return {
+      type: 'LOGIN'
+    }
+  };
+
+  const logoutUser = () => {
+    return {
+      type: 'LOGOUT'
+    }
+  };
   ```

@@ -37,12 +37,14 @@
   2. When actions get dispatched, the store runs the reducer to update the state
   3. If the state gets updated, the store notifies all subscribers
 
+### Store Methods
 
 ## Demo
 - Make a separate `redux` folder with `index.js` in it in `src`
   - src/redux/index.js
 - Import `Redux` through `npm install redux`
-- createStore - allows us to build up `store`
+- `createStore` - allows us to build up `store`
+  - **`createStore` is deprecated and replaced with `configureStore` but it works the same way**
   ```Javascript
   import { createStore } from 'redux'
   ```
@@ -57,11 +59,11 @@
 
   export default store;
   ```
-- **subscribe()** is a listener that waits for updates to the STATE of the store. On changes runs the callback function
+- **state.subscribe()** is a listener that waits for updates to the STATE of the store. On changes runs the callback function
 
-- **getState()** returns the STATE object in the redux store
+- **state.getState()** returns the STATE object in the redux store
 
-- **dispatch()** sends an ACTION to the reducer. The ACTION is an object with a "type" and sometimes a value
+- **state.dispatch()** sends an ACTION to the reducer. The ACTION is an object with a "type" and sometimes a value
   ```Javascript
   const initialState = { count: 0 }
   const store = createStore((state = initialState, action) => {
@@ -79,6 +81,24 @@ store.subscribe(() => {
   console.log('The store has changed')
   favNumElement.innerText = store.getState().count
 })
+```
+
+### componentDidMount / componentWillUnmount
+- After component mounts, it is passively active in the background -> creates connection to store
+  - We need to unsubscribe when the component unmounts! -> remove reference to store
+- `this.unsubscribe` is a function
+  - In `componentDidMount()` we are setting the value of the subscription to `this.unsubscribe`
+  - In `componentWillUnmount()` we are calling `this.unsubscribe()`
+```Javascript
+componentDidMount() {
+  this.unsubscribe = store.subscribe(() => {
+    this.setState(store.getState())
+  })
+}
+
+componentWillUnmount() {
+  this.unsubscribe()
+}
 ```
 
 ## Lab
