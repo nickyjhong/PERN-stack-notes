@@ -3,6 +3,9 @@
 
 ## Notes
 - `npx create-react-app .`
+- `ES7+ React/Redux/React-Native snippets` on VS Code
+    - Type in `rfc` and press `enter` for boilerplate
+
 
 ### JSX
 - JSX lets us write HTML inside of our JS
@@ -216,3 +219,48 @@ export default function CounterHooks({ initialCount }) {
             )
         }
         ```
+
+### Spread Operator
+- Allows you to copy all parts of array or object into another array or object
+```Javascript
+// App.js
+function App() {
+  return(
+    <RecipeList recipes={sampleRecipes}/>
+  );
+}
+
+const sampleRecipes = [
+  {
+    id: 1,
+    name: 'Plain Chicken',
+    servings: 3,
+    cookTime: '1:45',
+    instructions: '1. Put salt on chicken\n 2. Put chicken in oven\n 3. Eat chicken'
+  },
+  {
+    id: 2,
+    name: 'Plain Pork',
+    servings: 5,
+    cookTime: '0:45',
+    instructions: '1. Put paprika on pork\n 2. Put pork in oven\n 3. Eat pork'
+  }
+]
+...
+// RecipeList.js
+export default function RecipeList({ recipes }) {
+    return (
+        <div>
+            {recipes.map(recipe => {
+                return (
+                    <Recipe 
+                        key={recipe.id}
+                        {...recipe} 
+                    />
+                )
+            })}
+        </div>
+
+  )
+}
+```
