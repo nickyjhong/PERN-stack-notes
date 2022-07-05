@@ -5,6 +5,7 @@
 #### [🔗 Redux Documentation](./day-15-redux/redux-documentation.md)
 #### [🔗 Redux Notes](./day-15-redux/redux.md)
 #### [🔗 freeCodeCamp Redux Notes](./day-15-redux/fcc-redux.md)
+#### [🔗 React-Redux Notes](./day-15-redux/react-redux.md)
 
 ## Day 2: React-Redux, Thunks, `combineReducers`
 

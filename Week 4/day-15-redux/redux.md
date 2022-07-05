@@ -86,9 +86,11 @@ store.subscribe(() => {
 ### componentDidMount / componentWillUnmount
 - After component mounts, it is passively active in the background -> creates connection to store
   - We need to unsubscribe when the component unmounts! -> remove reference to store
+  - If you don't unsubscribe when you unmount, the other subscription conneections will continue to listen and run in the background
 - `this.unsubscribe` is a function
   - In `componentDidMount()` we are setting the value of the subscription to `this.unsubscribe`
   - In `componentWillUnmount()` we are calling `this.unsubscribe()`
+- Use `this.` so we can use it within the class!
 ```Javascript
 componentDidMount() {
   this.unsubscribe = store.subscribe(() => {
