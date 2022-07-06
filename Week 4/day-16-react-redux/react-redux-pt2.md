@@ -3,7 +3,8 @@
 
 ## Notes
 - `Provider` takes care of `subscribe` and `unsubscribe`
-
+  - Because of the provider you will always have access to the store
+  - Whatever lives inside the provider has access to the store as well as any child of the component being wrapped by provider
 
 ### Demo
 
@@ -47,6 +48,7 @@
     }
   }
 
+  // combined object with mapStateToProps and mapDispatchToProps
   const ConnectedCounter = connect(mapStateToProps, mapDispatchToProps)(Counter)
 
   ReactDOM.render(
@@ -125,6 +127,7 @@
       }
     }
     ```
+      - There are two different ways to write [mapDispatchToProps](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
   - `connect`
     ```Javascript
     const Connected = connect(mapStateToProps, mapDispatchToProps)(ComponentName)
@@ -135,3 +138,19 @@
       </Provider>,
       document.getElementById('app')
     );
+    ```
+      - The `connect` function wrapped our component in another component ('ConnectWrapperComponent'), which makes a call to `store.subscribe` so that it is registered to the store
+        - `connect` has access to `store` because we gave the store to the `Provider`
+        - 'ConnectWrapperComponent' listens for change and causes our component to re-render
+      - 'ConnectWrapperComponent' decides what props to send using `mapStateToProps` and `mapDispatchToProps`
+        - It takes the two objects they return, merges them together, and sends them all down as `props` to our component
+
+
+## Resources:
+
+#### [🔗 **Redux from Scratch Part 1**](https://gist.github.com/tmkelly28/5ac689b8de9b0da0bda2e2a377322c46)
+#### [🔗 **Redux from Scratch Part 2**](https://gist.github.com/tmkelly28/db4e9f1aca0971378faed2ce95cb6c89)
+#### [🔗 **Redux from Scratch Part 3**](https://gist.github.com/tmkelly28/7a38351a142f2bbe8d791b3239c96623)
+#### [🔗 **Redux from Scratch Part 4**](https://gist.github.com/tmkelly28/0518885e20c300c3609c6591f2913368)
+#### [🔗 **Redux from Scratch Part 5**](https://gist.github.com/tmkelly28/d2f20b42272ac780de31ea6a734ef8c3)
+#### [🔗 **Redux from Scratch Part 6**](https://gist.github.com/tmkelly28/746a65cd145c7c8a7ff5b45defda49e2)
