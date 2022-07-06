@@ -1,4 +1,4 @@
-@import-normalize;
+@import 'normalize.css';
 @import 'font.css';
 @import 'buttons.css';
 @import 'recipe-list.css';

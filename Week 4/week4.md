@@ -8,6 +8,9 @@
 #### [🔗 React-Redux Notes](./day-15-redux/react-redux.md)
 
 ## Day 2: React-Redux, Thunks, `combineReducers`
+#### [🔗 React-Redux Notes Part 2](./day-16-react-redux/react-redux-pt2.md)
+#### [🔗 Thunks Notes](./day-16-react-redux/thunks.md)
+#### [🔗 `combineReducers`](./day-16-react-redux/combineReducers.md)
 
 ## Day 3: React router, Readium
 

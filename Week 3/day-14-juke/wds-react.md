@@ -264,3 +264,46 @@ export default function RecipeList({ recipes }) {
   )
 }
 ```
+
+#### **`uuid()`** - universally unique identifier
+- Generate unique Id
+- Unique Id on demand
+`npm install uuid@3.4.0`
+OR
+`import { v4 as uuidv4 } from 'uuid'`
+
+#### **`useId()`**
+- React 18 hook to generate unique Id
+- Unique Id per component
+
+
+## Hooks
+- **`useState`** - allows you use add state to functional components
+    - Same capabilities as `this.state` in class components
+    - The only argument in `useState()` is the initial state
+    - It returns a pair of values: the **current state** and **a function that updates it**
+        - It is similar to `this.state._____` and `this.setState` except it is in a pair
+    ```Javascript
+    import React, { useState } from 'react';
+    function Example() {
+        const [ count, setCount ] = useState(0)
+    }
+
+    // class Example extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //     count: 0
+    //     };
+    // }
+    ```
+
+## `createContext()`
+
+
+## Resources:
+
+#### [🔗 **useState Hook**](https://reactjs.org/docs/hooks-state.html)
+#### [🔗 **React Context**](https://reactjs.org/docs/context.html)
+
+    
