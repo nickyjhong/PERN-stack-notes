@@ -67,3 +67,43 @@ function complexSynchronousThunk(someValue) {
   }
 }
 ```
+
+```Javascript
+import axios from "axios";
+
+export const GOT_BALLOONS = "GOT_BALLOONS";
+export const BALLOONS_ERROR = "BALLOONS_ERROR";
+
+export function createGotBaloonsAction(balloons) {
+  return { type: GOT_BALLOONS, balloons };
+}
+
+export function createBalloonsErrorAction(error) {
+  return { type: BALLOONS_ERROR, error };
+}
+
+export function createGetBalloonsThunk() {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get('/balloons')
+      dispatch(createGotBaloonsAction(data))
+    } catch (error) {
+      dispatch(createBalloonsErrorAction(error))
+    }
+  }
+}
+```
+
+```Javascript
+const gotPets = (pets) => ({
+  type: GOT_PETS_FROM_SERVER,
+  pets
+})
+
+export const getPets = () => {
+  return async(dispatch) => {
+    const {data} = await axios.get('/pets')
+    dispatch(gotPets(data))
+  }
+}
+```
