@@ -2,6 +2,9 @@
 [⬅ Go Back](../week4.md)
 
 ## Notes
+- Specific to fetch/axios
+- Why is it necessary?
+  - We use thunk middleware to help us change state and perform async tasks
 - Thunks is a function that returns another function to be performed later
 - Pass it to a `dispatch()` **instead of an action**
   ```Javascript
@@ -21,7 +24,7 @@
   - Components dispatch whether an action is async or not
 
 ### Thunk Middleware
-- Checks the incoming action
+- Checks the incoming action **before reaching the reducer**
   - If action is a regular object, do nothing
   - If action is a function:
     - Invoke it and pass the `dispatch` and `getState` methods to it!
@@ -82,6 +85,7 @@ export function createBalloonsErrorAction(error) {
   return { type: BALLOONS_ERROR, error };
 }
 
+// THUNK
 export function createGetBalloonsThunk() {
   return async dispatch => {
     try {
@@ -100,8 +104,9 @@ const gotPets = (pets) => ({
   pets
 })
 
+// THUNK
 export const getPets = () => {
-  return async(dispatch) => {
+  return async (dispatch, getState, {axios}) => {
     const {data} = await axios.get('/pets')
     dispatch(gotPets(data))
   }
