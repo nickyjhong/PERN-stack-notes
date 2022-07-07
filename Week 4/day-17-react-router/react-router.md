@@ -2,6 +2,11 @@
 [⬅ Go Back](../week4.md)
 
 ## Notes
+### **REACT ROUTER IS SPECIFICALLY FOR FRONT END DISPLAYING**
+THIS DOES NOT REPLACE EXPRESS (BACKEND) ROUTES
+
+<br>
+
 - AJAX!
   - To deal with url bar:
     - Use HTML5 Browser History API, or
@@ -50,6 +55,12 @@
     ```Javascript
     <Route path='/somePath' component={SomeComponent} />
     ```
+  - HashRouter puts `/#/` in the url which tells us where the route starts
+    - Don't need to change anything in Express
+  - BrowserRouter doesn't add `/#/` to the url
+    - Need to change a few things in Express (is it frontend or backend?)
+    - 
+
     ![React-Router-Route](/images/react-router-route.png)
 
     ```Javascript
@@ -119,3 +130,85 @@
       )
     }
     ```
+- 404 Handler
+  ```Javascript
+  import {Route, Link, Switch} from 'react-router-dom'
+
+  const fourOhFour = (props) => {
+    return 
+    <h2 className='box'>
+      OH NO! Couldn't find page!
+      <Link to='/'>Go Home</Link>
+    </h2>
+  }
+
+  <Switch>
+    // Home page
+    // <React.Fragment></React.Fragment> is a null component / empty page
+    <Route path='/' render={() => <React.Fragment></React.Fragment>} />
+    // put this at the bottom to go through everything FIRST. Anything that doesn't match the routes above '*' will return the fourOhFour
+    <Route path='*' component={fourOhFour} />
+  </Switch>
+  ```
+
+
+### React Router Props
+  - History
+    - Used to manipulate browser's history programmatically using `history.push`
+      - `push` just sends you to another page
+      - Other methods: `goBack`, `goForward`
+    - `props.history` uses the history rather than a specific link
+      - Can use in axios call -> can programmatically move user as a response to something else
+    ```Javascript
+    class Puppy extends React.Component {
+      handleClick = () => {
+        console.log('You clicked!')
+        this.props.history.push('/elsewhere')
+      }
+      render() {
+        return (
+          <button onClick={this.handleClick}>
+            Go Elsewhere
+          </button>
+        )
+      }
+    }
+    ```
+
+  - Location
+    ![react-router-props-location](/images/react-router-props-location.png)
+    - Contains information about where the URL is currently
+    - Don't really use this unless talking specifically about search parameters
+
+  - Match
+    - Contains information about how the path matched the current URL
+    - Contains `params` key (like Express route for params)
+    ```Javascript
+    <Route path='/puppies/:puppyId' component={Puppy} />
+    const Puppy = (props) => {
+      return <div>{props.match.params.puppyId}</div>
+    }
+
+    // http://localhost:3000/#/puppies/1
+    // props.match.params.puppyId: 1
+    ```
+
+    ```Javascript
+    import React from 'react'  
+
+    const Cats = (props) => {
+      console.log(props)
+      return <h2 className='box'>Cats! Cat #{props.match.params.id}</h2>
+    }
+
+    export default Cats
+    ```
+  - **NOTE**: 
+    - RENDER LETS US HAVE OUR OWN PROPS!
+    - To access routeProps AND add your own props, you need to spread them out:
+      ```Javascript
+      <Route
+        path='/dogs'
+        render={(routeProps) => <Dogs {...routeProps} myOwnProps='Nicky' /> }
+      />
+      ```
