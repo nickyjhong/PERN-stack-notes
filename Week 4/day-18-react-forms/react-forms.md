@@ -30,7 +30,7 @@
   })
 
   ```
-## [Form Demo](react-forms.md)
+## [Form Demo](SignUpForm.js)
 
 ### How to get data
 - Collect from the change event while users are typing

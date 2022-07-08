@@ -17,6 +17,7 @@ export default class SignUpForm extends React.Component {
     const value = event.target.value
     // need to bind this or it won't work
     this.setState({
+      // Use event.target.name to get the value of the name prop (name='username' , name='password')
       [event.target.name]: value
     })
   }
@@ -42,3 +43,8 @@ export default class SignUpForm extends React.Component {
     )
   }
 }
+
+// NOTE:
+// add pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" to password input to make requirements
+// Password must require at least 1 number, 1 lowercase letter, 1 uppercase letter, and at least 8 character
+// <input type="password" name="password" onChange={this.changeHandler} value={this.state.password} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
