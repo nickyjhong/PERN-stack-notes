@@ -104,7 +104,6 @@
   - Add `fetchTodo`
 - Add the JSX (copied and pasted from `CreateTodo` but added `delete` button)
   - Make `handleChange` button (same as `CreateTodo`)
-  <br>
   - `client/components/EditTodo.js`
     ```Javascript
     import { fetchTodo } from '../store/todo';
