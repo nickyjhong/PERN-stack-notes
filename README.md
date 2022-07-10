@@ -23,4 +23,4 @@
 
 ### 📓 Junior Phase Walkthroughs
 
-#### [Instructions for Labs, Pairs, and Checkpoints ](./Walkthroughs/walkthrough-directory.md)
+#### [🗣 Instructions for Labs, Pairs, and Checkpoints ](./Walkthroughs/walkthrough-directory.md)
