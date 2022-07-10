@@ -20,4 +20,7 @@
 
 #### [📅 Week 7](WEEK7.md) -->
 
-<!--
+
+### 📓 Junior Phase Walkthroughs
+
+#### [Instructions for Labs, Pairs, and Checkpoints ](./Walkthroughs/walkthrough-directory.md)
