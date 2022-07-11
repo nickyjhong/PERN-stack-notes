@@ -23,3 +23,6 @@
 #### [🔗 W4D5 CreateTodo](w4d5-create-todo.md)
 
 #### [✔️ **Checkpoint: Redux**](w4-redux-checkpoint.md)
+
+## Week 5: Course Review, Junior Phase Final Project (JPFP), Senior Checkpoint
+#### [🔗 W5D1 GoodieBag](w5d1-goodie-bag.md)
