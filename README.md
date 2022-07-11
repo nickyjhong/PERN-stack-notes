@@ -13,9 +13,9 @@
 #### [📅 Week 3](./Week%203/week3.md)
 
 #### [📅 Week 4](./Week%204/week4.md)
-<!-- 
-#### [📅 Week 5](WEEK5.md)
 
+#### [📅 Week 5](./Week%205/week-5.md)
+<!-- 
 #### [📅 Week 6](WEEK6.md)
 
 #### [📅 Week 7](WEEK7.md) -->
