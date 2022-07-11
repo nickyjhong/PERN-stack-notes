@@ -161,7 +161,7 @@
     - Import `AllCandies` and stuff from 'react-router-dom'
       ```Javascript
       import AllCandies from './AllCandies'
-      import {HashRouter as Router, Route, Switch, Link} from 'react-router-dom'
+      import {HashRouter as Router, Route} from 'react-router-dom'
       ```
     - Import `<Route>` for `AllCandies`
       - Wrap the div in `<Router>`
@@ -214,4 +214,41 @@
         </div>
       )
       ```
-- [ ] Add links to the navbar that can be used to navigate to the all-candies view and the home view (`/`)
+- [X] Add links to the navbar that can be used to navigate to the all-candies view and the home view (`/`)
+  - Make `Navbar.js` in `app/components`
+    - Import `Link` and make links to Home and Candies
+    - Make the links buttons because they're hard to see in the `<nav>`
+    - In `Root.js`, import `Navbar` and put it in the `<nav>`
+  ```Javascript
+  // Navbar.js
+  import React from 'react'
+  import { Link } from 'react-router-dom'
+
+  export default function Navbar() {
+    return (
+      <div>
+        <button>
+          <Link className="nav" to="/">Home</Link>
+        </button>
+        
+        <button>
+          <Link className="nav" to="/candies">Candies</Link>
+        </button>
+      </div>
+    )
+  }
+
+  // Root.js
+  <Router>
+    <div>
+      <nav>
+        <Navbar />
+      </nav>
+      <main>
+        <h1>Welcome to the Goodie Bag!</h1>
+        <p>What a nice home page for your goodies!</p>
+        <Route exact path="/candies" component={AllCandies} />
+      </main>
+    </div>
+  </Router>
+  ```
