@@ -194,10 +194,6 @@
         )
       }
       ```
-  - Make `Candy.js` in `app/components`
-    - `app/components/AllCandies.js` will map over this to return each individual candy
-    - Put it in a table to show `name`, `imageUrl`, and `quantity`
-    - Add inline styling to `img` or the picture is going to be huge
   - `app/components/AllCandies.js`
     - .map `this.props.candies` to show each candy
 
@@ -262,4 +258,208 @@
       </main>
     </div>
   </Router>
+  ```
+## Some refactoring and styling :)
+![goodie-bag-home](/images/goodiebaghome.png)
+![goodie-bag-candies](/images/goodiebagcandies.png)
+
+- Make `Welcome.js` in `app/components` - so homepage only shows on home!!
+- Make `Candy.js` in `app/components`
+  - `app/components/AllCandies.js` will map over this to return each individual candy
+  ```Javascript
+  // Welcome
+  import React from 'react'
+
+  export default function Welcome() {
+    return (
+      <div className='welcome'>
+        <h1>Welcome to the Goodie Bag!</h1>
+        <h4>What a nice home page for your goodies!</h4>
+      </div>
+    )
+  }
+
+  // root.js
+  import React from 'react'
+  import AllCandies from './AllCandies'
+  import Welcome from './Welcome'
+  import Navbar from './Navbar'
+  import {HashRouter as Router, Route} from 'react-router-dom'
+
+  const Root = () => {
+    return (
+      <Router>
+        <div>
+          <nav>
+            <Navbar />
+          </nav>
+          <main>
+            <Route exact path='/' component={Welcome} />
+            <Route exact path="/candies" component={AllCandies} />
+          </main>
+        </div>
+      </Router>
+    )
+  }
+
+  export default Root
+
+  // Candy.js
+  import React from 'react'
+
+  export default function Candy(props) {
+    const { candy } = props;
+    return (
+      <div className="row">
+        <div className="description-column column">
+          <p className="details candy-name">{candy.name}</p>
+          <p className="details">{candy.description}</p>
+          <p className="details">Quantity: {candy.quantity}</p>
+        </div>
+        <div className="image-column column">
+          <img src={candy.imageUrl} />
+        </div>
+      </div>
+
+    )
+  }
+
+  // AllCandies.js
+  import React, { Component } from 'react'
+  import { connect } from 'react-redux'
+  import { fetchCandies } from '../reducers/index'
+  import Candy from './Candy'
+
+  export class AllCandies extends Component {
+    componentDidMount() {
+      this.props.fetchCandies()
+    }
+    render() {
+      const { candies } = this.props
+      return (
+        <div>
+          <h2>Candies</h2>
+          <div id="candies">  
+            {candies.map((candy) => {
+              return (
+                <div key={candy.id}>
+                  <Candy candy={candy} />
+                </div>
+              )
+            })}   
+          </div>
+        </div>
+      )
+    }
+  }
+
+  const mapStateToProps = (state) => ({
+    candies: state.candies
+  })
+
+  const mapDispatchToProps = (dispatch) => ({
+    fetchCandies: () => dispatch(fetchCandies())
+  })
+
+  export default connect(mapStateToProps, mapDispatchToProps)(AllCandies)
+  ```
+- Styling
+  ```Javascript
+  * {
+    box-sizing: border-box;
+    font-family: arial, sans-serif;
+    margin: 0;
+  }
+
+  .welcome::after {
+    content: "";
+    background: url('bg.jpg');
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
+
+  nav {
+    align-items: center;
+    background-color: #F3D1CC;
+    opacity: 0.7;
+    color: #c0c0c0;
+    display: flex;
+    height: 80px;
+    padding: 10px;
+    justify-content: space-around;
+  }
+
+  main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  h1 {
+    font-family: "Amatic", sans-serif;
+    font-size: 100px;
+    padding-top: 100px;
+  }
+
+  h2 {
+    font-family: "Questrial", sans-serif;
+    font-size: 40px;
+    text-align: center;
+    color: #F488B9;
+  }
+
+  h4 {
+    font-family: "Questrial", sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    padding-top: 40px;
+  }
+
+  img {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    flex: 50%;
+  }
+
+  .navLink {
+    font-family: "Questrial", sans-serif;
+    font-size: 20px;
+    padding: 40px;
+  }
+
+  .details {
+    padding: 10px;
+    font-family: "Questrial", sans-serif;
+    display: flex;
+    font-size: 20px;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .candy-name {
+    font-size: 25px;
+    color: palevioletred;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
   ```
