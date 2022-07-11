@@ -14,7 +14,9 @@
 
 #### [✔️ **Checkpoint: Pillars**](w3-pillars.md)
 #### [✔️ **Checkpoint: React**](w3-react-checkpoint.md)
+
 ## Week 4: Redux, React Router, Forms
+#### [🔗 W4D3 Redux Groceries](w4d3-redux-groceries.md)
 #### [🔗 W4D4 Readium](w4d4-readium.md)
 #### [🔗 W4D5 CreateTodo](w4d5-CreateTodo.md)
 
