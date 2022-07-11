@@ -186,7 +186,32 @@
       ```
   - `app/components/AllCandies.js`
     - .map `this.props.candies` to show each candy
+      - Put it in a table to show `name`, `imageUrl`, and `quantity`
+      - Add inline styling to `img` or the picture is going to be huge
       ```Javascript
-
+      return (
+        <div>
+          <div id="candies">
+          <table>
+            <tr>
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>QUANTITY</th>
+              <th>IMAGE</th>
+            </tr>
+                  
+            {candies.map((element) => {
+              return (
+                <tr key={element.id}>
+                  <th>{element.name}</th>
+                  <th>{element.description}</th>
+                  <th>{element.quantity}</th>
+                  <img src={element.imageUrl} style={{height:"200px", width: "200px"}} />
+                </tr>
+              )})}   
+            </table>
+          </div>
+        </div>
+      )
       ```
 - [ ] Add links to the navbar that can be used to navigate to the all-candies view and the home view (`/`)
