@@ -11,6 +11,8 @@
 
 ## Week 3: Single-Page Applications, Pillars, React
 #### [🔗 W3D1 Codys Cafe](w3d1-codys-cafe.md)
+#### [🔗 W3D5 Juke](w3d5-juke.md)
+
 
 #### [✔️ **Checkpoint: Pillars**](w3-pillars.md)
 #### [✔️ **Checkpoint: React**](w3-react-checkpoint.md)
