@@ -20,6 +20,6 @@
 ## Week 4: Redux, React Router, Forms
 #### [🔗 W4D3 Redux Groceries](w4d3-redux-groceries.md)
 #### [🔗 W4D4 Readium](w4d4-readium.md)
-#### [🔗 W4D5 CreateTodo](w4d5-CreateTodo.md)
+#### [🔗 W4D5 CreateTodo](w4d5-create-todo.md)
 
 #### [✔️ **Checkpoint: Redux**](w4-redux-checkpoint.md)

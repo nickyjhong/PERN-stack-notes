@@ -84,7 +84,109 @@
     })
     ```
 #### Frontend
-- [ ] Write a candies sub-reducer to manage candies in your Redux store
-- [ ] Write a component to display a list of all candies
-- [ ] Display the all-candies component when the url matches `/candies`
+- [X] Write a candies sub-reducer to manage candies in your Redux store
+  - `app/reducers/index.js`
+    - Import axios
+      ```Javascript
+      import axios from 'axios'
+      ```
+    - Make an action type, action creator, and thunk. Add the case to the reducer
+      - The thunk `fetchCandies` will get the data from '/api/candies' which shows all candies and then dispatch it
+      - In `initialState`, make `candies` an empty array
+      - In the reducer, `SET_CANDIES` will give the rest of the state + the candies
+      ```Javascript
+      // Action Type
+      const SET_CANDIES = 'SET_CANDIES'
+
+      // Action Creators
+      const _setCandies = (candies) => {
+        return {
+          type: SET_CANDIES,
+          candies
+        }
+      }
+
+      // Thunks
+      export const fetchCandies = () => {
+        return async (dispatch) => {
+          const { data } = await axios.get('/api/candies')
+          dispatch(_setCandies(data))
+        }
+      }
+
+      // Reducer
+      const initialState = {
+        candies: [],
+      }
+
+      const rootReducer = (state = initialState, action) => {
+        switch (action.type) {
+          case SET_CANDIES:
+            return {...state, candies: action.candies}
+          default:
+            return state
+        }
+      }
+      ```
+- [X] Write a component to display a list of all candies
+  - Make `AllCandies.js` in `app/components`
+  - Import everything that needs to be imported...
+    ```Javascript
+    import React, { Component } from 'react'
+    import { connect } from 'react-redux'
+    import { fetchCandies } from '../reducers/index'
+    import Candy from '../../server/db/models/Candy'
+    ```
+  - `mapStateToProps` - make `candies` accessible as a prop to be mapped in render body
+    ```Javascript
+    const mapStateToProps = (state) => ({
+      candies: state.candies
+    })
+    ```
+  - `mapDispatchToProps` - `fetchCandies` to be used in `componentDidMount()`
+    ```Javascript
+    componentDidMount() {
+      this.props.fetchCandies()
+    }
+    ...
+    const mapDispatchToProps = (dispatch) => ({
+      fetchCandies: () => dispatch(fetchCandies())
+    })
+
+    export default connect(mapStateToProps, mapDispatchToProps)(AllCandies)
+    ```
+    - `console.log(this.props)` returns {`candies`: [{}, {} ,{}], `fetchCandies`, `history`, `location`, `match`}
+- [X] Display the all-candies component when the url matches `/candies`
+  - `app/components/root.js`
+    - Import `AllCandies` and stuff from 'react-router-dom'
+      ```Javascript
+      import AllCandies from './AllCandies'
+      import {HashRouter as Router, Route, Switch, Link} from 'react-router-dom'
+      ```
+    - Import `<Route>` for `AllCandies`
+      - Wrap the div in `<Router>`
+      - Give the `<Route>` an `exact` prop so that it doesn't fuzzy match
+      ```Javascript
+      const Root = () => {
+        return (
+          <Router>
+            <div>
+              <nav>
+                Goodie Bag
+              </nav>
+              <main>
+                <h1>Welcome to the Goodie Bag!</h1>
+                <p>What a nice home page for your goodies!</p>
+                <Route exact path="/candies" component={AllCandies} />
+              </main>
+            </div>
+          </Router>
+        )
+      }
+      ```
+  - `app/components/AllCandies.js`
+    - .map `this.props.candies` to show each candy
+      ```Javascript
+
+      ```
 - [ ] Add links to the navbar that can be used to navigate to the all-candies view and the home view (`/`)
