@@ -14,7 +14,7 @@
 - `npm run start:dev`
 
 
-#### Backend
+## Backend
 
 - [X] Write a `candies` model with the following information:
   - [X] name - not empty or null
@@ -68,12 +68,21 @@
       Candy
     }
     ```
-  - `server/api/index.js` - all routes here are already mounted on '/api/
+  - `server/api/index.js` - all routes here are already mounted on '/api/candies'
+    - Write the following line so you it is connected to `server/api/candies.js`
+    ```Javascript
+    router.use('/candies', require('./candies'));
+    ```
+
+  - Make `candies.js` in `server/api`
     - Require `Candy` and write the route to get all Candy information
     ```Javascript
-    const Candy = require('../db/models/Candy');
+    const express = require('express')
+    const router = express.Router()
+    const { Candy } = require('../db')
 
-    router.get('/candies', async (req, res, next) => {
+    // At /api/candies
+    router.get('/', async (req, res, next) => {
       try {
         const allCandy = await Candy.findAll()
         res.send(allCandy)
@@ -81,8 +90,10 @@
         next(err)
       }
     })
+    module.exports = router
     ```
-#### Frontend
+  
+## Frontend
 - [X] Write a candies sub-reducer to manage candies in your Redux store
   - `app/reducers/index.js`
     - Import axios
@@ -121,7 +132,7 @@
       const rootReducer = (state = initialState, action) => {
         switch (action.type) {
           case SET_CANDIES:
-            return {...state, candies: action.candies}
+            return action.candies
           default:
             return state
         }
@@ -183,10 +194,13 @@
         )
       }
       ```
+  - Make `Candy.js` in `app/components`
+    - `app/components/AllCandies.js` will map over this to return each individual candy
+    - Put it in a table to show `name`, `imageUrl`, and `quantity`
+    - Add inline styling to `img` or the picture is going to be huge
   - `app/components/AllCandies.js`
     - .map `this.props.candies` to show each candy
-      - Put it in a table to show `name`, `imageUrl`, and `quantity`
-      - Add inline styling to `img` or the picture is going to be huge
+
       ```Javascript
       return (
         <div>
@@ -200,14 +214,14 @@
                   <th>IMAGE</th>
                 </tr>
                     
-                {candies.map((element) => {
+                {candies.map((candy) => {
                   return (
-                  <tr key={element.id}>
-                    <th>{element.name}</th>
-                    <th>{element.description}</th>
-                    <th>{element.quantity}</th>
+                  <tr key={candy.id}>
+                    <th>{candy.name}</th>
+                    <th>{candy.description}</th>
+                    <th>{candy.quantity}</th>
                     <th>
-                      <img src={element.imageUrl} style={{height:"200px", width: "200px"}} />
+                      <img src={candy.imageUrl} style={{height:"200px", width: "200px"}} />
                     </th>
                   </tr>
                 )})}   
@@ -220,7 +234,6 @@
 - [X] Add links to the navbar that can be used to navigate to the all-candies view and the home view (`/`)
   - Make `Navbar.js` in `app/components`
     - Import `Link` and make links to Home and Candies
-    - Make the links buttons because they're hard to see in the `<nav>`
     - In `Root.js`, import `Navbar` and put it in the `<nav>`
   ```Javascript
   // Navbar.js
@@ -230,13 +243,8 @@
   export default function Navbar() {
     return (
       <div>
-        <button>
-          <Link className="nav" to="/">Home</Link>
-        </button>
-        
-        <button>
-          <Link className="nav" to="/candies">Candies</Link>
-        </button>
+        <Link className="nav" to="/">Home</Link>
+        <Link className="nav" to="/candies">Candies</Link>
       </div>
     )
   }
