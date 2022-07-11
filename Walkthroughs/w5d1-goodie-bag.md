@@ -16,11 +16,11 @@
 
 #### Backend
 
-- [X] **Write a `candies` model with the following information:**
-  - [X] **name - not empty or null**
-  - [X] **description - not empty or null**
-  - [X] **quantity - cannot exceed 10 of the same candy in your goodie bag**
-  - [X] **imageUrl - with a default value**
+- [X] Write a `candies` model with the following information:
+  - [X] name - not empty or null
+  - [X] description - not empty or null
+  - [X] quantity - cannot exceed 10 of the same candy in your goodie bag
+  - [X] imageUrl - with a default value
   - `server/db/models/candy` - need to define the model `Candy` (use dummy data and requirements as reference)
     - Some need to be [validated](https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/)
   ```Javascript
@@ -56,7 +56,7 @@
   });
   ```
   - `npm run seed`
-- [X] **Write a route to serve up all candies**
+- [X] Write a route to serve up all candies
   - `server/db/index.js`
     - Require `Candy` and export it!
     ```Javascript
@@ -191,23 +191,27 @@
       return (
         <div>
           <div id="candies">
-          <table>
-            <tr>
-              <th>NAME</th>
-              <th>DESCRIPTION</th>
-              <th>QUANTITY</th>
-              <th>IMAGE</th>
-            </tr>
-                  
-            {candies.map((element) => {
-              return (
-                <tr key={element.id}>
-                  <th>{element.name}</th>
-                  <th>{element.description}</th>
-                  <th>{element.quantity}</th>
-                  <img src={element.imageUrl} style={{height:"200px", width: "200px"}} />
+            <table>
+              <tbody>
+                <tr>
+                  <th>NAME</th>
+                  <th>DESCRIPTION</th>
+                  <th>QUANTITY</th>
+                  <th>IMAGE</th>
                 </tr>
-              )})}   
+                    
+                {candies.map((element) => {
+                  return (
+                  <tr key={element.id}>
+                    <th>{element.name}</th>
+                    <th>{element.description}</th>
+                    <th>{element.quantity}</th>
+                    <th>
+                      <img src={element.imageUrl} style={{height:"200px", width: "200px"}} />
+                    </th>
+                  </tr>
+                )})}   
+              </tbody>
             </table>
           </div>
         </div>
