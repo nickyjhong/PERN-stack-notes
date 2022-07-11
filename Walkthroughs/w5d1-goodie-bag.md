@@ -6,7 +6,6 @@
 - `createdb goodie-bag`
   - If you check `server/db/database.js` it says `${pkg.name}`
   - Go to `package.json` and look for the name - "goodie-bag"
-  - `server/db/database` - add package name to `const db = new Sequelize...`
     ```Javascript
     const db = new Sequelize(`postgres://localhost:5432/${pkg.goodiebag}`, {
       logging: false // so we don't see all the SQL queries getting made
