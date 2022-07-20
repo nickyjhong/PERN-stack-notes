@@ -8,12 +8,8 @@
 ## Day 2: Algorithms & Analysis, Sorting
 #### [🔗 Algorithm Notes](/junior-phase/day-25-algorithms-sorting/algos.md)
 
-
 ## Day 3: Data Structures (Stacks, Queues & Linked Lists)
-<!-- #### [🔗 React-Redux Notes Part 2](./day-16-react-redux/react-redux-pt2.md)
-#### [🔗 Thunks Notes](./day-16-react-redux/thunks.md)
-#### [🔗 `combineReducers`](./day-16-react-redux/combineReducers.md)
-#### [🔗 freeCodeCamp React-Redux Notes](./day-16-react-redux/fcc-react-redux.md) -->
+#### [🔗 Data Structures Notes](./junior-phase/day-26-data-structures/data-structures.md)
 
 ## Day 4: Hash Tables
 <!-- #### [🔗 React Router](./day-17-react-router/react-router.md) -->
