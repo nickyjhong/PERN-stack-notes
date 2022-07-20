@@ -8,11 +8,13 @@
   - How does it work (in one sentence)
 ![big o cheatsheet](/images/big-o-cheatsheet.png)
 ### Stacks and Queues
-- Stacks
+- Stacks - FILO (First in, last out)
   - Collection of ordered elements that can repeat (not a set)
-    - "push" - adds an element to the stack
-    - "pop" - retrieve element from list (last in, first out)
-    - "peek" - look at top element without removing it
+  - Operations:
+    - **push** - adds an element to the stack
+    - **pop** - retrieve element from list
+    - **peek** - look at top element without removing it
+  - "Undo" and "redo" stacks
   - Since arrays have the push() and pop() already implemented you generally don't create your own stack class like Dax is doing.  He's doing this to be very explicit to show you just the stack-only parts:
     ```Javascript
     class Stack {
@@ -45,7 +47,56 @@
     ```
     - Push
     ![Stack push](/images/stack-push.png)
-  - Queues
+- Queues
+  - Similar to stack but FIFO (First in, first out)
+  - Operations:
+    - **enqueue** - add to queue
+    - **dequeue** - remove from queue
+  - Printer queue or standing on line
+  ```Javascript
+  function Queue () {
+    collection = [];
+    this.print = function() {
+      console.log(collection);
+    }
+    this.enqueue = function(element) {
+      collection.push(element);
+    }
+    this.dequeue = function() {
+      return collection.shift();
+    }
+    this.front = function() { // return item in front without removing
+      return collection[0];
+    }
+    this.size = function() {
+      return collection.length;
+    }
+    this.isEmpty = function() {
+      return (collection.length === 0);
+    }
+  }
+  ```
+
+  ```Javascript
+  class Queue {
+    constructor() {
+      this.storage = {}
+      this.head = 0;
+      this.tail = 0;
+    }
+    enqueue (element) {
+      this.storage[this.tail] = element;
+      this.tail++
+    }
+    dequeue() {
+      let removed = this.storage[this.head]
+      delete this.storage[this.head]
+      this.head++
+      return removed
+    }
+  }
+
+  ```
   
   
 ### Linked List
