@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id='root'></div>
+    <script type='text/babel'>
+        class SignIn extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    username: '',
+                    password: ''
+                };
+                this.onChange = this.onChange.bind(this);
+                this.onSubmit = this.onSubmit.bind(this);
+            }
+            onChange(ev){
+                this.setState({ [ev.target.name]: ev.target.value });
+            }
+            onSubmit(ev){
+                ev.preventDefault();
+                const { username, password } = this.state;
+                this.props.signIn({
+                    username,
+                    password
+                });
+            }
+            render(){
+                const { onChange, onSubmit } = this;
+                const { username, password } = this.state;
+                return (
+                    <form onSubmit={ onSubmit }>
+                        <input value={ username } onChange={ onChange } name='username'/>
+                        <input value={ password } onChange={ onChange } name='password'/>
+                        <button>Sign In</button>
+                    </form>
+                );
+            }
+        }
+
+
+        class App extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    auth: {}
+                };
+                this.signIn = this.signIn.bind(this);
+                this.logout = this.logout.bind(this);
+            }
+            logout(){
+                window.localStorage.removeItem('token');
+                this.setState({ auth: {}});
+            }
+            async attemptTokenLogin(){
+                const token = window.localStorage.getItem('token');
+                if(token){
+                    const response = await axios.get('/api/auth', {
+                        headers: {
+                            authorization: token
+                        }
+                    });
+                    this.setState({ auth: response.data });
+                }
+            }
+            componentDidMount(){
+                this.attemptTokenLogin();
+            }
+            async signIn(credentials){
+                let response = await axios.post('/api/auth', credentials);
+                const { token } = response.data;
+                window.localStorage.setItem('token', token);
+                this.attemptTokenLogin();
+            }
+            render(){
+                const { auth } = this.state;
+                const { signIn, logout } = this;
+                if(!auth.id){
+                    return <SignIn signIn={ signIn }/>
+                }
+                else {
+                    return (
+                        <div>
+                            Welcome { auth.username }
+                            <button onClick={ logout }>Logout</button>
+                        </div>
+                    );
+                }
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector('#root'));
+    </script>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-# JSON Web Tokens (JWT)
+# JSON Web Tokens (JWT) / Authorization
 [⬅ Go Back](/week6.md)
 
 ## Notes
@@ -6,7 +6,7 @@
 - User inputs credentials (username and password)
 - Server receives credentials, verifies user, and sends back a token
 - Future requests from the client include the token (reference the token)
--Future request then received by the server verify and decode the token so the server knows who made the request
+- Future request then received by the server verify and decode the token so the server knows who made the request
 
 ### Problems
 [Quick JWT Demo](./jwt-demo-1.js)
@@ -60,9 +60,20 @@
 ### Tokens
 #### Anatomy of a token
 - A token consists of three parts separated by a "."
-  - **Header** - identifies which algorithm is used to generate the signature
+  - **Header** - meta-information on the HTTP request
+    - Set a header on our request that contains the token
+    ```js
+    await axios.get('/', { header: {
+      authorization: token
+    }})
+    ```
+    - JWT uses **authorization** specifically as the header
   - **Payload** - holds claims (or key-value pairs)
+    - Data inside the token
   - **Signature** - validates the token, makes sure it wasn’t altered
+    - `jwt.sign` provide it with the payload and secret
+    - The Secret alows the JWT to be uniquely tied to this specific application
+- Motivation - don't want the user to have to continually sign in or tell us who they are
 
   ![token anatomy](/images/token-anatomy.png)
 
@@ -76,6 +87,12 @@
 - Environment variables can be set on local machine and called from inside code:
   - From terminal: `JWT=yourSecretKeyHere`
   - From code: `const SECRET_KEY = process.env.JWT;`
+
+- JWT is stored in frontend
+  - Created on the server (request comes in)
+  - JWT is stored in client's frontend (localStorage)
+    - Can also be stored in cookies
+      - Look into `express-session`
 
 [Quick JWT Demo 2](./jwt-demo-2.jsjwt-demo-2.js)
 

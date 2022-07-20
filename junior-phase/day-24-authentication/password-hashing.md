@@ -1,9 +1,11 @@
-# Password Hashing
+# Bcrypt / Password Hashing
 [⬅ Go Back](/week6.md)
 
 ## Notes
 
 [Bcrypt Demo](./bcrypt-demo.js)
+
+[JWT and Bcrypt Demo](/junior-phase/day-24-authentication/jwt-bcrypt-demo/)
 - Password hashing is SLOW
 - The number parameter in hash determines how long the request takes, it ramps up extremely so 15 is as high as you probably want, and you need to use an async function for it
 - When a user creates their account, we odn't want to store their password in plain text
