@@ -10,6 +10,8 @@
 
 ## Day 3: Data Structures (Stacks, Queues & Linked Lists)
 #### [🔗 Data Structures Notes](./junior-phase/day-26-data-structures/data-structures.md)
+#### [🔗 Binary Trees Notes](./junior-phase/day-26-data-structures/binary-trees.md)
+
 
 ## Day 4: Hash Tables
 <!-- #### [🔗 React Router](./day-17-react-router/react-router.md) -->

@@ -95,10 +95,8 @@
       return removed
     }
   }
-
   ```
-  
-  
+
 ### Linked List
 - Like a chain
 - Uses "nodes" which encapsulates a value and pointer(s) to the next/previous node
