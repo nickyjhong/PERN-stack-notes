@@ -69,6 +69,7 @@
     4. Backtrack and look for right node. 
     5. Repeat from step 1 (yay recursion :/)
 
+  ![binary 12](/images/post-order-tree.png)
 
 <br>
 

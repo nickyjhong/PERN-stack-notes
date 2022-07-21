@@ -14,7 +14,8 @@
 
 
 ## Day 4: Hash Tables
-<!-- #### [🔗 React Router](./day-17-react-router/react-router.md) -->
+#### [🔗 Hash Tables Notes](./junior-phase/day-27-hash-tables/hash-tables.md)
+#### [🔗 Algorithm Tackling Notes](./junior-phase/day-27-hash-tables/algo-tackling.md)
 
 ## Day 5: Final Day of Junior Phase!!!
 <!-- #### [🔗 React Forms](./day-18-react-forms/react-forms.md) -->
