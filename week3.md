@@ -21,5 +21,3 @@
 ## Day 5: Juke
 #### [🔗 Juke](/junior-phase/day-14-juke/juke.md)
 #### [🔗 freeCodeCamp React Notes](/junior-phase/day-14-juke/fcc-react.md)
-#### [🔗 WebDevSimplified React Notes](/junior-phase/day-14-juke/wds-react.md)
-#### [🔗 Simple Counter App](/junior-phase/day-14-juke/react-counter/)
