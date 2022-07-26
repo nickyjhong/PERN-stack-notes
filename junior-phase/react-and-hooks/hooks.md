@@ -208,15 +208,293 @@
   } 
   ```
 ### `useContext()` and `createContext()`
-- Create a context using `createContext()` in App/Main
+- export `React.createContext()` to create context and use in rest of application
+- `Context.Provider` - wrap this around everything that needs access to the context
+  - Has a single prop called `value` which is value of context
+  ```js
+  const ThemeContext = React.createContext()
+  function App() {
+    const [theme, setTheme] = useState('dark')
 
-## Lesser Used Hooks
+    return(
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ChildComponent />
+      </ThemeContext.Provider>
+    )
+  }
+  ```
+  ```js
+  function ChildComponent() {
+    return <GrandChildComponent />
+  }
+  ```
+- `Context.Consumer` - wrap this around code to access the value of the context **FOR CLASS COMPONENTS**
+    ```js
+    class GrandChildComponent {
+      render() {
+        return (
+          <ThemeContext.Consumer>
+            {({ theme, setTheme }) => {
+              return (
+                <>
+                  <div>The theme is {theme}</div>
+                  <button onClick={() => setTheme('light')}>
+                    Change to Light Theme
+                  </button>
+                </>
+              )
+            }} 
+          </ThemeContext.Consumer>
+        )
+      }
+    }
+    ```
+<br>...
+- **`useContext` will do everything for you!**
+  - Can cut out consumer portion of context and remove complex nesting
+
+  ```js
+  function GrandChildComponent() {
+    const { theme, setTheme } = useContext(ThemeContext)
+
+    return (
+      <>
+        <div>The theme is {theme}</div>
+        <button onClick={() => setTheme('light')}>
+          Change to Light Theme
+        </button>
+      </>
+    )
+  }
+  ```
+<br>
+
+<br>Example:
+
+```js
+// App.js
+import React, { useState } from 'react'
+import FunctionContextComponent from './FunctionContextComponent'
+import ClassContextComponent from './ClassContextComponent'
+
+export const ThemeContext = React.createContext()
+
+export default function App() {
+  const [darkTheme, setDarkTheme] = useState(true)
+
+  function toggleTheme() {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme)
+  }
+
+  return (
+    <>
+      <ThemeContext.Provider value={darkTheme}>
+        // all of the following have access to context
+        <button onClick={toggleTheme}>Toggle Theme</button>
+        <FunctionContextComponent />
+        <ClassContextComponent />
+      </ThemeContext.Provider>
+    </>
+  )
+}
+```
+```js
+// ClassContextComponent.js
+import React, { Component } from 'react'
+import { ThemeContext } from './App'
+
+export default class ClassContextComponent extends Component {
+  themeStyles(dark) {
+    return {
+      backgroundColor: dark ? '#333' : '#CCC',
+      color: dark ? '#CCC' : '#333',
+      padding: '2rem',
+      margin: '2rem'
+    }
+  }
+  render() {
+    return (
+      <ThemeContext.Consumer>
+        {darkTheme => {
+          return <div style={this.themeStyles(darkTheme)}>Class Theme</div>
+        }}
+      </ThemeContext.Consumer>
+    )
+  }
+}
+```
+```js
+// FunctionContextComponent.js
+import React, { useContext } from 'react'
+import { ThemeContext } from './App'
+
+export default function FunctionContextComponent() {
+  const darkTheme = useContext(ThemeContext)
+  const themeStyles = {
+    backgroundColor: darkTheme ? '#333' : '#CCC',
+    color: darkTheme ? '#CCC' : '#333',
+    padding: '2rem',
+    margin: '2rem'
+  }
+  return (
+    <div style={themeStyles}>Function Theme</div>
+  )
+}
+```
+<br>
+
+<br>Simplification:
+  - Make a new .js file just for context
+  - "ThemeContext" is for the darkTheme state
+  - "ThemeUpdateContext" is for the toggleTheme function (setting darkTheme state)
+
+```js
+// ThemeContext.js
+import React, { useContext, useState } from 'react'
+
+const ThemeContext = React.createContext()
+const ThemeUpdateContext = React.createContext()
+
+export function ThemeProvider({ children }) {
+  const [darkTheme, setDarkTheme] = useState(true)
+
+  function toggleTheme() {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme)
+  }
+
+  return(
+    <ThemeContext.Provider value={darkTheme}>
+      <ThemeUpdateContext.Provider value={toggleTheme}>
+        {children}
+      </ThemeUpdateContext.Provider>
+    </ThemeContext.Provider>
+  )
+}
+```
+```js
+// App.js
+import React from 'react'
+import FunctionContextComponent from './FunctionContextComponent'
+import { ThemeProvider } from './ThemeContext'
+
+export const ThemeContext = React.createContext()
+
+export default function App() {
+  return (
+    <>
+      <ThemeProvider>
+        <FunctionContextComponent />
+      </ThemeProvider>
+    </>
+  )
+}
+```
+```js
+// FunctionContextComponent.js
+import React, {useContext} from 'react'
+import { ThemeContext } from './App'
+
+export default function FunctionContextComponent() {
+  const darkTheme = useContext(ThemeContext)
+  const themeStyles = {
+    backgroundColor: darkTheme ? '#333' : '#CCC',
+    color: darkTheme ? '#CCC' : '#333',
+    padding: '2rem',
+    margin: '2rem'
+  }
+  return (
+    <>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+      <div style={themeStyles}>Function Theme</div>
+    </>
+  )
+}
+```
+<br>
+
+<br>Custom hooks:
+- Get rid of "ThemeContext" in App.js
+- In ThemeContext.js, create custom hooks
+  - Wrap "ThemeContext" in useContext in useTheme
+  - Wrap "ThemeUpdateContext" in useContext in useThemeUpdate
+
+
+```js
+// ThemeContext.js
+import React, { useContext, useState } from 'react'
+
+const ThemeContext = React.createContext()
+const ThemeUpdateContext = React.createContext()
+
+export function useTheme() {
+  return useContext(ThemeContext)
+}
+
+export function useThemeUpdate() {
+  return useContext(ThemeUpdateContext)
+}
+
+export function ThemeProvider({ children }) {
+  const [darkTheme, setDarkTheme] = useState(true)
+
+  function toggleTheme() {
+    setDarkTheme(prevDarkTheme => !prevDarkTheme)
+  }
+
+  return(
+    <ThemeContext.Provider value={darkTheme}>
+      <ThemeUpdateContext.Provider value={toggleTheme}>
+        {children}
+      </ThemeUpdateContext.Provider>
+    </ThemeContext.Provider>
+  )
+}
+```
+```js
+// App.js
+import React from 'react'
+import FunctionContextComponent from './FunctionContextComponent'
+import { ThemeProvider } from './ThemeContext'
+
+export default function App() {
+  return (
+    <>
+      <ThemeProvider>
+        <FunctionContextComponent />
+      </ThemeProvider>
+    </>
+  )
+}
+```
+```js
+// FunctionContextComponent.js
+import React from 'react'
+import { useTheme, useThemeUpdate } from './ThemeContext'
+
+export default function FunctionContextComponent() {
+  const darkTheme = useTheme()
+  const toggleTheme = useThemeUpdate()
+  const themeStyles = {
+    backgroundColor: darkTheme ? '#333' : '#CCC',
+    color: darkTheme ? '#CCC' : '#333',
+    padding: '2rem',
+    margin: '2rem'
+  }
+  return (
+    <>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+      <div style={themeStyles}>Function Theme</div>
+    </>
+  )
+}
+```
+<!-- ## Lesser Used Hooks
 
 
 ## Optional Hooks
 
 
-## Custom Hooks
+## Custom Hooks -->
 
 
 ## Resources:
