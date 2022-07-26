@@ -298,12 +298,3 @@ OR
     // }
     ```
 
-## `createContext()`
-
-
-## Resources:
-
-#### [🔗 **useState Hook**](https://reactjs.org/docs/hooks-state.html)
-#### [🔗 **React Context**](https://reactjs.org/docs/context.html)
-
-    
