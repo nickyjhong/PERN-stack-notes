@@ -297,4 +297,71 @@ OR
     //     };
     // }
     ```
+- **`useContext`** - convert state to context instead of props to pass around
+    - Cleans up components so we don't have to pass around useless props between everything
+    - Use `React.createContext()` to create the context
+        - This is the Provider in the return
+            - Has one prop passed in value -> contextValue
+    - In other components, extract needed context using `useContext()`
 
+- **`useEffect`** - allows us to do a side effect every time page re-renders
+    - Takes in a function
+    ```js
+    useEffect(() => {
+        // code here
+    })
+    ```
+    - Second parameter is all of the dependencies you want to depend on
+        - Empty array to run only on first rendering
+    ```js
+    useEffect(() => {
+        // code here
+    }, [])
+    ```
+    - To save in localStorage, use `localStorage.setItem()`
+        - Set a key
+        - localStorage can only support strings
+    ```js
+    useEffect(() => {
+        localStorage.setItem('key', JSON.stringify(recipes))
+    }, [recipes])
+    ```
+    - localStorage key
+        - Name of application (cookingWithReact)
+        - Separate with . to indicate which part of the app it comes from
+    ```js
+    const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+    }, [recipes])
+    ```
+    - Create another `useEffect` to load recipes in from localStorage
+        - Only load when application starts
+        - Hooks are called in order so make sure this hook is ABOVE the other useEffect hook
+    ```js
+    useEffect(() => {
+        const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+        if (recipeJSON !== null) setRecipes(JSON.parse(recipeJSON))
+    }, [])
+    ```
+    - Clean-up
+    ```js
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+        return () => console.log('recipes set')
+    }, [recipes])
+    ```
+    - Note: React 18 introduced changes to StrictMode
+        1. Easiest workaround is to remove StrictMode from index.js file
+        2. Better solution is to modify how recipes are loaded - use `useState` instead of `useEffect`
+            ```js
+            const [recipes, setRecipes] = useState(() => { 
+            const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+            if (recipeJSON == null) {
+                return sampleRecipes
+            } else {
+                return JSON.parse(recipeJSON)
+            }
+            })
+            ```
