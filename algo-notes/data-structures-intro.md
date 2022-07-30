@@ -1,5 +1,5 @@
 # Intro to Data Structures and Complexity
-[⬅ Go Back](/week6.md)
+[⬅ Go Back](./algos.md)
 
 ## Notes
 - Data structures are just concepts to know for coding interviews
