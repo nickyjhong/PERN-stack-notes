@@ -23,4 +23,7 @@
 
 ### 📓 Junior Phase Walkthroughs
 
-#### [🗣 Instructions for Labs, Pairs, and Checkpoints ](./Walkthroughs/walkthrough-directory.md)
+#### [🗣 Instructions for Labs, Pairs, and Checkpoints](./Walkthroughs/walkthrough-directory.md)
+
+### 💻 Data Structures and Algorithms
+#### [📝 Data Structures and Algorithms](./algo-notes/algos.md)
