@@ -44,6 +44,7 @@ Write a function called `same`, which accepts two arays. The function should ret
   ```
   ```js
   // Time: O(n)
+
   function same(arr1, arr2) {
     if (arr1.length !== arr2.length) {
       return false;
@@ -75,6 +76,7 @@ Write a function called `same`, which accepts two arays. The function should ret
 Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
   ```js
   // Time: O(n)
+
   function anagrams (str1, str2) {
   // if str1.length doesn't equal str2.length its false
     if (str1.length !== str2.length) return false
@@ -129,3 +131,25 @@ Write a function called `sumZero` which accepts a sorted array of integers. The 
   ```
 
 Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted.
+  ```js
+  countUniqueValues([1,1,1,1,1,2]) // 2
+  countUniqueValues([1,2,3,4,4,4,7,7,12,12,13]) // 7
+  countUniqueValues([]) // 0
+  countUniqueValues([-2,-1,-1,0,1]) // 4
+  ```
+  ```js
+  // Time: O(n)
+  // Space: O(n)
+
+  function countUniqueValues(arr) {
+    if (arr.length === 0) return 0;
+    let i = 0;
+    for (let j = 1; j < arr.length; j++) {
+      if (arr[i] !== arr[j]) {
+        i++;
+        arr[i] = arr[j]
+      }
+    }
+    return i + 1
+  }
+  ```
