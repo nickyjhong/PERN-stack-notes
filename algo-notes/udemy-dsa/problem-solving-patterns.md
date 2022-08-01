@@ -35,3 +35,63 @@
 ## Frequency Counters
 - This pattern uses objects or sets to collect values/frequencies of values
 - This can often avoid the need for nested loops of O(n^2) operations with arrays / strings
+
+Write a function called `same`, which accepts two arays. The function should return true if every value in the array has it's corresponding value squared in the second array. The frequency of values must be the same.
+  ```js
+  same([1, 2, 3], [4, 1, 9]) // true
+  same([1, 2, 3], [1, 9]) // false
+  same([1, 2, 1], [4, 4, 1]) // false (must be same frequency)
+  ```
+  ```js
+  // Time: O(n)
+  function same(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
+    let freqCount1 = {}
+    let freqCount2 = {}
+    // loop over each array individually
+    for (let val of arr1) {
+      freqCount1[val] ? freqCount1[val]++ : freqCount1[val] = 1
+    }
+    for (let val of arr2) {
+      freqCount2[val] ? freqCount2[val]++ : freqCount2[val] = 1
+    }
+    for (let key in freqCount1) {
+      // if the squared key isn't in freqCount2, return false
+      if (!(key ** 2 in freqCount2)) {
+        return false
+      }
+      // if the squared key is in freqCount2 but the count (value) doesn't match, return false
+      if (freqCount2[key ** 2] !== freqCount1[key]) {
+        return false
+      }
+    }
+    return true
+  }
+  ```
+  - Two separate loops is better than a nested loop
+
+Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
+  ```js
+  function anagrams (str1, str2) {
+  // if str1.length doesn't equal str2.length its false
+    if (str1.length !== str2.length) return false
+    // make object to hold chars
+    let count = {}
+
+    // iterate through str1 and add count of each char to object
+    for (let char of str1) {
+      count[char] ? count[char]++ : count[char] = 1
+    }
+    // iterate through arr2 and subtract count of each char from object
+    for (let char of str2) {
+      if (!count[char]) {
+        return false
+      } else {
+        count[char]--
+      }
+    }
+    return true
+  }
+  ```
