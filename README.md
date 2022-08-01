@@ -3,7 +3,6 @@
 
 ## 🐣 Junior Phase
 
-
 ### 📓 Junior Phase Weekly Notes
 
 #### [📅 Week 1](/week1.md)
@@ -22,8 +21,15 @@
 
 
 ### 📓 Junior Phase Walkthroughs
-
 #### [🗣 Instructions for Labs, Pairs, and Checkpoints](./Walkthroughs/walkthrough-directory.md)
+
+</hr>
+</br>
 
 ### 💻 Data Structures and Algorithms
 #### [📝 Data Structures and Algorithms](./algo-notes/algos.md)
+
+</hr>
+</br>
+
+## 🦅 Senior Phase
