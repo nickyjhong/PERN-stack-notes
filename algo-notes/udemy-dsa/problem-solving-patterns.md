@@ -4,7 +4,8 @@
 ## REACTO
 ### **R**epeat the problem
   - Understand the problem
-  - Restate the problem in own words
+  - Restate the problem in own words'
+  - Ask questions
   - What are the inputs that go into the problem?
   - What are the outputs that come from the solution?
   - Can the outputs be determined from the inputs? (Do I have enough information to solve the problem?)
@@ -22,6 +23,8 @@
     - Temporarily ignore that difficulty
     - Write a simplified solution
     - Incorporate difficulty back in
+### **T**est
+  - Test your code! 
 ### **O**ptimize code
   - Look back and refactor
   - Can you check the result?
@@ -73,7 +76,7 @@ Write a function called `same`, which accepts two arays. The function should ret
   ```
   - Two separate loops is better than a nested loop
 
-Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
+Given two strings, write a function called `anagrams` to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.
   ```js
   // Time: O(n)
 
@@ -103,7 +106,7 @@ Given two strings, write a function to determine if the second string is an anag
 - Creating pointers (or values) that correspond to an index or position and move towards the beginning, end, or middle based on a certain condition
 - Very efficient for solving problems with minimal space complexity as well
 
-Write a function called `sumZero` which accepts a sorted array of integers. The function should find the first pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist.
+Write a function called `sumZero` which accepts a **sorted** array of integers. The function should find the first pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist.
 
   ```js
   sumZero([-3, -2, -1, 0, 1, 2, 3]) // [-3, 3]
@@ -115,12 +118,14 @@ Write a function called `sumZero` which accepts a sorted array of integers. The 
   // Space: O(1)
 
   function sumZero(arr) {
+    // start pointer at beginning and end of array
     let left = 0;
     let right = arr.length - 1;
     while (left < right) {
       let sum = arr[left] + arr[right];
       if (sum === 0) {
         return [arr[left], arr[right]]
+      // if the sum is greater than 0, that means the first number is too low
       } else if (sum > 0) {
         right --;
       } else {
@@ -130,7 +135,7 @@ Write a function called `sumZero` which accepts a sorted array of integers. The 
   }
   ```
 
-Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted.
+Implement a function called `countUniqueValues`, which accepts a **sorted** array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted.
   ```js
   countUniqueValues([1,1,1,1,1,2]) // 2
   countUniqueValues([1,2,3,4,4,4,7,7,12,12,13]) // 7
@@ -141,10 +146,14 @@ Implement a function called countUniqueValues, which accepts a sorted array, and
   // Time: O(n)
   // Space: O(n)
 
+  // Method: moving all of the unique numbers to the beginning of the array in order
+
   function countUniqueValues(arr) {
     if (arr.length === 0) return 0;
+    // start first counter at index 0 and second counter at the next index to compare
     let i = 0;
     for (let j = 1; j < arr.length; j++) {
+      // if the two numbers are not the same, move i to the next index and then make it equal to the number at j
       if (arr[i] !== arr[j]) {
         i++;
         arr[i] = arr[j]
@@ -168,15 +177,20 @@ Write a function called `maxSubarraySum` which accepts an array of integers and 
   maxSubarraySum([], 4) // null
   ```
   ```js
+  // Time: O(n)
+
+  // Approach: make a sub-arr and instead of making new sub-arr each time, "slide the window" by subtracting the first num and adding a new num to the end of arr
   function maxSubarraySum(arr, num) {
     let maxSum = 0;
     let tempSum = 0;
+    // sum the first sub-arr
     if (arr.length < num) return null;
     for (let i = 0; i < num; i++) {
       maxSum += arr[i];
     }
     tempSum = maxSum;
     for (let i = num; i < arr.length; i++) {
+      // subtract the first number of the sub-arr and add the next number as the last number of sub-arr
       tempSum = tempSum - arr[i - num] + arr[i];
       maxSum = Math.max(maxSum, tempSum);
     }
