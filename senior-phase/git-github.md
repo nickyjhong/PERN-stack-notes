@@ -30,6 +30,7 @@
   - `git push`
 
 - Branches (workspace for self and then combine branch to main) - avoid conflicts
+<br>
   *Branches should be featured based!*
   - `git checkout -b branchname`
   - Show all branches and * the one you're in: `git branch -a` 
