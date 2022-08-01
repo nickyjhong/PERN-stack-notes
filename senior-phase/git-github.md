@@ -5,7 +5,8 @@
 ### 1. Make an organization to share repo with everybody (only one person has to do this)
   - Top right corner (+)
   - Create organization
-  - Organization account name: 2206-fsa-gh-team-___
+  - Organization account name: "2206-fsa-gs-team-_____"
+    - Make the organization name relevant
   - Belongs to: my personal account
   - Add people by username or email
     - Also add instructors and mentors
