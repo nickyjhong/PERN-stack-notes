@@ -1,10 +1,7 @@
 # Searching Algorithms
 [⬅ Go Back](../algos.md)
 
-This function accepts an array and a value. 
-Check if the current array element is equal to the value
-If it is, return the index at which the element is found.
-If the value is never found, return -1
+
 
 ## Linear Search
 - Visit one item at a time (set interval)
@@ -16,6 +13,11 @@ If the value is never found, return -1
 - Average and worst case: O(n)
 
   ```js
+  <!-- This function accepts an array and a value. 
+  Check if the current array element is equal to the value
+  If it is, return the index at which the element is found.
+  If the value is never found, return -1 -->
+
   // Time: O(n)
   function linearSearch(arr, val) {
     for (let i = 0; i < arr.length; i++) {
@@ -42,6 +44,12 @@ If the value is never found, return -1
     - If the value is too large, move the right pointer down
   - If you never find the value, return -1
   ```js
+  <!-- This function accepts an array and a value. 
+  Check if the current array element is equal to the value
+  If it is, return the index at which the element is found.
+  If the value is never found, return -1 -->
+
+  // Time: O(log n)
   function binarySearch(arr, val) {
     let left = 0
     let right = arr.length - 1
@@ -59,3 +67,27 @@ If the value is never found, return -1
   ```
 
 ## Naive String Search
+- Most basic/common way of searching for a substring in a longer string
+#### Naive String Seach Pseudocode
+  - Loop over the longer string
+  - Loop over the shorter string
+  - If the characters don't match, break out of the inner loop
+  - If the characters do match, keep going
+  - If you complete the inner loop and find a match, increment the count of matches
+  - Return the count
+  ```js
+  function naiveSearch(long, short) {
+    let count = 0;
+    for (let i = 0; i < long.length; i++) {
+      for (let j = 0; j < short.length; j++) {
+        if (short[j] !== long[i+j]) {
+          break;
+        }
+        if (j === short.length - 1) {
+          count++
+        }
+      }
+      return count;
+    }
+  }
+  ```
