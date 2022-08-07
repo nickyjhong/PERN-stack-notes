@@ -31,3 +31,4 @@
 
 ## 🦅 Senior Phase
 #### [🛠 Git and GitHub](./senior-phase/git-github.md)
+#### [🛒 Grace Shopper](./senior-phase/grace-shopper.md)
