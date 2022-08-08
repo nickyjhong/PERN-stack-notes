@@ -72,3 +72,32 @@
   const nums = [1, 2, 3, 4, 5]
   const sumOfArray = sumContiguousArray(nums)
   ```
+### Classes
+  - Remember: classes are syntactical sugar in JavaScript!
+  - Will use constructor and instance methods a lot
+  - Almost never will use static methods
+  ```js
+  class Student {
+    constructor(firstName, lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+    // instance method
+    fullName() {
+      return `Your full name is ${this.firstName} ${this.lastName}`
+    }
+    // class method
+    static enrollStudents(...students) {
+      // send an email here?
+    }
+  }
+
+  let firstStudent = new Student('Nicky', 'Hong')
+
+  // Instance method
+  firstStudent // {firstName: 'Nicky', lastName: 'Hong'}
+  firstStudent.fullName() // Your full name is Nicky Hong
+
+  // Class method - utility function
+  Student.enrollStudents([firstStudent, secondStudent])
+  ```
