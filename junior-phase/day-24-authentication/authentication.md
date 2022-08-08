@@ -102,3 +102,20 @@
 ![auth demo 3](/images/auth-demo-3.jpg)
 ![auth demo 4](/images/auth-demo-4.jpg)
 ![auth demo 5](/images/auth-demo-5.jpg)
+
+### Testing
+On Postman, 
+1) Have a tab on POST http://localhost:8080/auth/login
+Click on Body tab and write in: 
+  ```js
+  {
+  "email": "chris@gmail.com",
+  "password": "123"
+  }
+  ```
+
+2) Copy value from "token" key
+3) Make a new tab on GET http://localhost:8080/api/users
+4) Go to Headers and type in
+Key: Authorization
+Value: Paste in value from "token" key
