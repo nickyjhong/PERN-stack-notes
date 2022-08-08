@@ -7,3 +7,4 @@
 #### [🔗 Problem Solving Patterns - REACTO, Frequency Counter, Multiple Pointers, Sliding Window, Divide and Conquer](./algo-notes/udemy-dsa/problem-solving-patterns.md)
 #### [🔗 Searching Algorithms ](./algo-notes/udemy-dsa/searching.md)
 #### [🔗 Singly Linked Lists ](./algo-notes/udemy-dsa/singly-linked-lists.md)
+#### [🔗 Singly Linked Lists ](./algo-notes/udemy-dsa/doubly-linked-lists.md)
