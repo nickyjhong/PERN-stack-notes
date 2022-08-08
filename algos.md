@@ -8,3 +8,6 @@
 #### [🔗 Searching Algorithms ](./algo-notes/udemy-dsa/searching.md)
 #### [🔗 Singly Linked Lists ](./algo-notes/udemy-dsa/singly-linked-lists.md)
 #### [🔗 Singly Linked Lists ](./algo-notes/udemy-dsa/doubly-linked-lists.md)
+
+## Lectures:
+#### [🔗 Stacks, Queues, Linked Lists Lecture](./algo-notes/problem-solving-toolkit.md)
