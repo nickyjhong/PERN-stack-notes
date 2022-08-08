@@ -68,6 +68,37 @@ class SinglyLinkedList {
     }
     return current;
   }
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++
+    return this;
+  }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let count = 0;
+    let current = this.head
+    while (count !== index) {
+      current = current.next;
+      count++
+    }
+    return current;
+  }
+  set(val, index) {
+    let node = this.get(index);
+    if (node) {
+      node.val = val;
+      return true
+    }
+    return false 
+  }
+
 }
 ```
 
@@ -226,6 +257,67 @@ class SinglyLinkedList {
     }
       this.length++
       return this;
+  }
+}
+```
+
+### Get - RETRIEVE NODE BASED ON POSITION IN LINKED LIST
+- Function should accept an index
+  - This index is not like an index in array - need to manually find
+- If the index is less than zero or greater than or equal to the length of the list, return null
+- Loop through the list until you reach the index and return the node at that specific index
+- Return the value at the index
+```js
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let count = 0;
+    let current = this.head
+    while (count !== index) {
+      current = current.next;
+      count++
+    }
+    return current;
+  }
+}
+```
+
+### Set - CHANGE VALUE OF NODE BASED ON POSITION IN LINKED LIST
+- Function should accept a value and an index
+- Use your **get** function to find the specific node
+- If the node is not found, return false
+- If the node is found, set the value of that node to be the value passed to the function and return true
+```js
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  set(val, index) {
+    let node = this.get(index);
+    if (node) {
+      node.val = val;
+      return true
+    }
+    return false 
   }
 }
 ```
