@@ -89,3 +89,9 @@
       }
     })
     ```
+7. Import `store` to `App` and put in `Provider`
+    ```js
+    import { store } from './store';
+    
+    <Provider store={store}>
+    ```
