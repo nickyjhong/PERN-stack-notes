@@ -28,7 +28,7 @@
     ```js
     <Provider store={}>
     ```
-5. Make `slices` folder and make `navSlice.js`
+5. Create `slices` folder and create `navSlice.js`
   - Responsible for everything about navigation
   - Import createSlice
     ```js
@@ -75,7 +75,7 @@
 
     export default navSlice.reducer;
     ```
-6. Make `store.js`
+6. Create `store.js`
   - Check redux documentation
     ```js
     // lets you make a store
@@ -96,7 +96,7 @@
     <Provider store={store}>
     ```
 ## Building `HomeScreen`
-1. Make a `screens` folder and make a `HomeScreen.js` in it (functional component)
+1. Create a `screens` folder and create a `HomeScreen.js` in it (functional component)
   - Type `rnfes` for react native functional export component with stylesheet
 2. Import `HomeScreen` into `App`
   - Use `SafeAreaView` so the text isn't in the "safe area" aka where time and battery is
@@ -108,7 +108,7 @@
 4. Put in Uber logo using Image tag and source uri: https://links.papareact.com/gzs
 
 ## Building `NavOptions`
-1. Make a `components` folder and make a `NavOptions.js` in it (`rnfes`)
+1. Create a `components` folder and create a `NavOptions.js` in it (`rnfes`)
 2. Import `NavOptions` in the View under the Image in `HomeScreen`
 3. Make a data array
   - Once you implement React Native Navigation and you click on one of the pieces of data, it will lead to the `screen`
@@ -196,7 +196,7 @@
   
 ### Google Places API
 1. [Instructions](https://github.com/FaridSafi/react-native-google-places-autocomplete)
-2. Make a `.env` file and add in GOOGLE_MAPS_API=pasteAPIkeyhere
+2. Create a `.env` file and add in GOOGLE_MAPS_API=pasteAPIkeyhere
 3. `npm i react-native-dotenv` and add to plugins
 4. Import into `HomeScreen`
     ```js
@@ -252,3 +252,88 @@
       dispatch(setDestination(null))
     }}
     ```
+
+## MapScreen Component
+1. Create `Map.js` in components
+2. Import `Map` into `MapScreen` and put into first view
+    ```js
+    const MapScreen = () => {
+      return (
+        <View>
+          <Text>Map</Text>
+
+          <View style={tw`h-1/2`}>
+            <Map />
+          </View>
+          <View style={tw`h-1/2`}></View>
+
+        </View>
+      )
+    }
+    ```
+3. `npm i react-native-maps`
+4. `import MapView, {Marker} from 'react-native-maps'`
+5. Use MapView and style it to take up all of the room on the first half (beyond safe view)
+  - The following coordinates are examples from the react-native-maps docs! (shows SF)
+    ```js
+    const Map = () => {
+      return (
+        <MapView
+          style={tw`flex-1`}
+          mapType='mutedStandard'
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      )
+    }
+    ```
+6. Make a `useSelector()` to pull data from `navSlice`
+    ```js
+    const Map = () => {
+
+      const origin = useSelector(selectOrigin);
+
+      return (
+        <MapView
+          style={tw`flex-1`}
+          mapType='mutedStandard'
+          initialRegion={{
+            latitude: origin.location.lat,
+            longitude: origin.location.lng,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+        />
+      )
+    }
+    ```
+7. Add in a marker (pin)
+    ```js
+    <MapView
+      style={tw`flex-1`}
+      mapType='mutedStandard'
+      initialRegion={{
+        latitude: origin.location.lat,
+        longitude: origin.location.lng,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      }}
+    >
+      {origin?.location && (
+        <Marker 
+          coordinate={{
+            latitude: origin.location.lat,
+            longitude: origin.location.lng
+          }}
+          title="Origin"
+          description={origin.description}
+          identifier="origin"
+        />
+      )}
+    </MapView> 
+    ```
+8. Update `NavOptions` so it isn't clickable if you don't add in details
