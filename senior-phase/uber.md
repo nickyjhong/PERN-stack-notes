@@ -144,3 +144,63 @@
         ```
   - Import SafeAreaProvider into `App` and wrap everything in it
 5. Create `MapScreen.js` in `screens`
+
+## React Native Navigation
+1. Install React Native Navigation and related things
+    ```js
+    npm i @react-navigation/native
+    expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    npm install @react-navigation/native-stack
+    ```
+2. Import into `App` and wrap everything under Provider in NavigationContainer
+    ```js
+    import 'react-native-gesture-handler';
+    import { NavigationContainer } from '@react-navigation/native';
+    import { createNativeStackNavigator } from '@react-navigation/native-stack';
+    ```
+3. Make a Stack and put it inside the SafeAreaProvider - works similarly to Router in React
+    ```js
+    export default function App() {
+      const Stack = createNativeStackNavigator()
+      return (
+        <Provider store={store}>
+          <NavigationContainer>
+            <SafeAreaProvider>
+              <Stack.Navigator>
+                <Stack.Screen 
+                  name='HomeScreen'
+                  component={HomeScreen}
+                  options={{
+                    headersShown: false,
+                  }}
+                />
+              </Stack.Navigator>
+            </SafeAreaProvider>
+          </NavigationContainer>
+        </Provider>
+      );
+    }
+    ```
+4. Go to `NavOptions` and make a useNavigation Hook
+    ```js
+    const navigation = useNavigation();
+    ```
+5. In the TouchableOpacity, make an onPress
+  - What's passed into `navigation.navigate()` directly correlates to the name given in `App`'s Stack.Screen
+    ```js
+    <TouchableOpacity
+      onPress={() => navigation.navigate('MapScreen')}
+      style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+    >
+    ```
+  
+### Google Places API
+1. [Instructions](https://github.com/FaridSafi/react-native-google-places-autocomplete)
+2. Make a `.env` file and add in GOOGLE_MAPS_API=pasteAPIkeyhere
+3. `npm i react-native-dotenv` and add to plugins
+4. Import into `HomeScreen`
+    ```js
+    import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+    import { GOOGLE_MAPS_APIKEY } from '@env';
+    ```
+5. 
