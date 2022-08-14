@@ -653,3 +653,37 @@
       </TouchableOpacity>
     </View>
     ```
+
+## Travel Time Calculation
+1. Create another useEffect responsible for calculating travel time
+  - Dependent on origin, destination, GOOGLE_MAPS_APIKEY
+    ```js
+    const dispatch = useDispatch();
+    ...
+    useEffect(() => {
+      if (!origin || !destination) return;
+
+      const getTravelTime = async() => {
+        fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`)
+        .then((res) => res.json())
+        .then(data => {
+          dispatch(setTravelTimeInformation(data.rows[0].elements[0]))
+        })
+      }
+      getTravelTime();
+    }, [origin, destination, GOOGLE_MAPS_APIKEY])
+    ```
+2. Use in RideOptions
+    ```js
+    const travelTimeInformation = useSelector(selectTravelTimeInformation)
+    ...
+    // Distance
+    <Text style={tw`text-center py-5 text-xl`}>Select a Ride - {travelTimeInformation?.distance.text}</Text>
+
+    // Travel Time
+    <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
+
+    // Price
+    const SURGE_CHARGE_RATE = 1.5;
+    ...
+    ```
