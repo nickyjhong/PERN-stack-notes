@@ -106,3 +106,41 @@
     import tw from 'twrnc';
     ```
 4. Put in Uber logo using Image tag and source uri: https://links.papareact.com/gzs
+
+## Building `NavOptions`
+1. Make a `components` folder and make a `NavOptions.js` in it (`rnfes`)
+2. Import `NavOptions` in the View under the Image in `HomeScreen`
+3. Make a data array
+  - Once you implement React Native Navigation and you click on one of the pieces of data, it will lead to the `screen`
+    ```js
+    const data = [
+      {
+        id: '123',
+        title: 'Get a ride',
+        image: 'https://links.papareact.com/3pn',
+        screen: 'MapScreen',
+      }, {
+        id: '456',
+        title: 'Order" food',
+        image: 'https://links.papareact.com/28w',
+        screen: 'EatsScreen',
+      }
+    ]
+    ```
+4. FlatList
+  - Will render out everything we need
+  - Pass in the data
+  - keyExtractor takes an item and gets the id
+  - Typically a vertical list by default (make it horizontal!)
+  - renderItem takes an arrow function
+    - Takes a destructured item
+    - Make it a TouchableOpacity
+      - Put Image, Text, and Icon a View in the TouchableOpacity
+      - Install react native elements, vector icons, and safe area context
+        ```js
+        npm i react-native-elements
+        npm i react-native-vector-icons
+        npm i react-native-safe-area-context
+        ```
+  - Import SafeAreaProvider into `App` and wrap everything in it
+5. Create `MapScreen.js` in `screens`
