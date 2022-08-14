@@ -92,6 +92,17 @@
 7. Import `store` to `App` and put in `Provider`
     ```js
     import { store } from './store';
-    
+
     <Provider store={store}>
     ```
+## Building `HomeScreen`
+1. Make a `screens` folder and make a `HomeScreen.js` in it (functional component)
+  - Type `rnfes` for react native functional export component with stylesheet
+2. Import `HomeScreen` into `App`
+  - Use `SafeAreaView` so the text isn't in the "safe area" aka where time and battery is
+3. Install tailwind and import it
+    ```js
+    npm i twrnc
+    import tw from 'twrnc';
+    ```
+4. Put in Uber logo using Image tag and source uri: https://links.papareact.com/gzs
