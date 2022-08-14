@@ -375,3 +375,60 @@
     }
     ```
 10. Create `NavigateCard.js` and `RideOptions.js` and import them
+
+## NavigateCard
+1. Make the view SafeAreaView
+2. Style with tailwind
+3. Import
+    ```js
+    import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+    import { GOOGLE_MAPS_APIKEY } from '@env'
+    ```
+4. Use GooglePlacesAutocomplete in inner view
+    ```js
+    const NavigateCard = () => {
+      return (
+        <SafeAreaView style={tw`bg-white flex-1`}>
+          <Text style={tw`text-center py-5 text-xl`}>Good morning, Nicole</Text>
+          <View style={tw`border-t border-gray-200 flex-shrink`}>
+            <View>
+              <GooglePlacesAutocomplete 
+                placeholder="Where to?"
+                styles={toInputBoxStyles}
+                fetchDetails={true}
+                returnKeyType={'search'}
+                minLength={2}
+                onPress={(data, details=null) => {
+
+                }}
+                enablePoweredByContainer={false}
+                query={{
+                  key: GOOGLE_MAPS_APIKEY,
+                  language: 'en'
+                }}
+                nearbyPlacesAPI='GooglePlacesSearch'
+                debounce={400}
+              />
+            </View>
+          </View>
+        </SafeAreaView>
+      )
+    }
+    ```
+5. Dispatcher
+    ```js
+    import { useDispatch } from 'react-redux'
+    import { setDestination } from '../slices/navSlice'
+    import { useNavigation } from '@react-navigation/native'
+
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
+    ...
+    onPress={(data, details=null) => {
+      dispatch(setDestination({
+        location: details.geometry.location,
+        description: data.description
+      }))
+      navigation.navigate('RideOptions')
+    }}
+    ```
