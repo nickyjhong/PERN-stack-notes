@@ -572,4 +572,84 @@
       </TouchableOpacity>
     </View>
     ```
-2. Add an onPress
+2. Add an onPress to navigate to RideOptions screen
+
+## RideOptions
+1. SafeAreaView
+2. Header in the Text
+3. Make a back button
+    ```js
+    const RideOptions = () => {
+      const navigation = useNavigation()
+      return (
+        <SafeAreaView style={tw`bg-white flex-grow`}>
+          <View>
+            <TouchableOpacity style={tw`absolute top-3 left-5 p-3 rounded-full`} >
+              <Icon name="chevron-left" type="fontawesome" />
+            </TouchableOpacity>
+            <Text style={tw`text-center py-5 text-xl`}>Select a Ride</Text>
+          </View>
+        </SafeAreaView>
+      )
+    }
+    ```
+4. Add navigation
+    ```js
+    import { useNavigation } from '@react-navigation/native';
+    const navigation = useNavigation()
+    ...
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('NavigateCard')}
+      style={tw`absolute top-3 left-5 z-50 p-3 rounded-full`}
+    >
+      <Icon name="chevron-left" type="fontawesome" />
+    </TouchableOpacity>
+    ```
+5. Make a FlatList under View for ride options
+  - Pass data in as data
+    ```js
+    <FlatList 
+      data={data}
+      keyExtractor={item => item.id}
+      renderItem={({ item: { id, title, multiplier, image } }) => (
+        <TouchableOpacity style={tw`flex-row items-center justify-between px-10`}>
+          <Image 
+            style={{
+              width: 100,
+              height: 100,
+              resizeMode: 'contain',
+            }}
+            source={{uri: image}}
+          />
+          <View>
+            <Text>{title}</Text>
+            <Text>Travel time...</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+    />
+    ```
+6. Create a state to keep track of what is selected
+    ```js
+    import React, { useState } from 'react';
+
+    const [selected, setSelected] = useState(null);
+    ...
+    <TouchableOpacity 
+      style={tw`flex-row items-center justify-between px-10 ${id === selected?.id && 'bg-gray-200'}`}
+      onPress={() => setSelected(item)}
+    >
+    ```
+7. Make a button to choose a car
+    ```js
+    <View>
+      <TouchableOpacity 
+        disabled={!selected}
+        style={tw`bg-black py-3 m-3 ${!selected && 'bg-gray-300'}`}
+      >
+        <Text style={tw`text-center text-white text-xl`}>
+          Choose {selected?.title}
+        </Text>
+      </TouchableOpacity>
+    </View>
+    ```
