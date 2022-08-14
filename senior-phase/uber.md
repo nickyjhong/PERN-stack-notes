@@ -49,7 +49,7 @@
     export const navSlice = createSlice({
       name: 'nav',
       initialState,
-      reducer: {
+      reducers: {
         setOrigin: (state, action) => {
           state.origin = action.payload
         },
@@ -203,4 +203,52 @@
     import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
     import { GOOGLE_MAPS_APIKEY } from '@env';
     ```
-5. 
+ 5. Add in styles and query
+    ```js
+    <GooglePlacesAutocomplete
+      placeholder="Where From?"
+      styles={{
+        container: {
+          flex: 0
+        },
+        textInput: {
+          fontSize: 18
+        }
+      }}
+      enablePoweredByContainer={false}
+      query={{
+        key: GOOGLE_MAPS_APIKEY,
+        language: 'en'
+      }}
+      nearbyPlacesAPI='GooglePlacesSearch'
+      debounce={400}
+    />
+    ```
+6. Add an onPress
+  - Arrow function with data and details
+    ```js
+    onPress={(data, details=null) => {
+
+    }}
+    fetchDetails={true}
+    returnKeyType={'search'}
+    minLength={2}
+    enablePoweredByContainer={false}
+    ```
+7. Make a dispatch
+    ```js
+    import { useDispatch } from 'react-redux'
+    import { setDestination, setOrigin } from '../slices/navSlice';
+
+    const dispatch = useDispatch();
+    ```
+8. Use the dispatch in onPress
+    ```js
+    onPress={(data, details=null) => {
+      dispatch(setOrigin({
+        location: details.geometry.location,
+        description: data.description
+      }))
+      dispatch(setDestination(null))
+    }}
+    ```
