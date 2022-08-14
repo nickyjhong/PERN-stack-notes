@@ -337,3 +337,41 @@
     </MapView> 
     ```
 8. Update `NavOptions` so it isn't clickable if you don't add in details
+9. Make a new stack!
+    ```js
+    import { createNativeStackNavigator } from '@react-navigation/native-stack'
+    const Stack = createNativeStackNavigator();
+    ```
+
+    ```js
+    const MapScreen = () => {
+      const Stack = createNativeStackNavigator();
+      return (
+        <View>
+          <View style={tw`h-1/2`}>
+            <Map />
+          </View>
+
+          <View style={tw`h-1/2`}>
+            <Stack.Navigator>
+              <Stack.Screen 
+                name="NavigateCard"
+                component={NavigateCard}
+                options={{
+                  headerShown: false
+                }}
+              />
+              <Stack.Screen 
+                name="RideOptions"
+                component={RideOptions}
+                options={{
+                  headerShown: false
+                }}
+              />
+            </Stack.Navigator>
+          </View>
+        </View>
+      )
+    }
+    ```
+10. Create `NavigateCard.js` and `RideOptions.js` and import them
