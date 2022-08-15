@@ -32,4 +32,5 @@
 ## 🦅 Senior Phase
 #### [🛠 Git and GitHub](./senior-phase/git-github.md)
 #### [🛒 Grace Shopper](./senior-phase/grace-shopper.md)
-#### [Uber Clone Walkthrough](./senior-phase/uber.md)
+#### [🤯 Uber Clone Walkthrough](./senior-phase/uber.md)
+#### [🤯 Object Oriented Programming](./senior-phase/oop.md)
